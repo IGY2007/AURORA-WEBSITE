@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurora Websites — Hacemos visible tu negocio</title>
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="//wa.me">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"></noscript>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            violet: '#5B4FC4',
+            gold:   '#E08A4E',
+            cream:  '#F4F2ED',
+            night:  '#1B1A33',
+          },
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+            inter:   ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; font-size: 106.25%; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F4F2ED;
+      color: #1B1A33;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, .font-poppins { font-family: 'Poppins', sans-serif; }
+
+    .grad-cta { font-size: 14px; }
+    .btn-wa, button[type="submit"] { font-size: 16px; }
+    .hero-cta-primary {
+      font-size: 16px;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.32s cubic-bezier(0.16,1,0.3,1);
+    }
+    .hero-cta-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #5B4FC4 0%, #9470CC 50%, #E08A4E 100%);
+      opacity: 0;
+      transition: opacity 0.32s cubic-bezier(0.16,1,0.3,1);
+      border-radius: inherit;
+    }
+    .hero-cta-primary:hover::before { opacity: 1; }
+    .hero-cta-primary:hover {
+      box-shadow: 0 4px 20px rgba(91,79,196,.36), 0 14px 36px rgba(224,138,78,.18) !important;
+    }
+
+    .grad-cta {
+      background: linear-gradient(135deg, #5B4FC4 0%, #9470CC 50%, #E08A4E 100%);
+    }
+    .grad-cta:hover {
+      background: linear-gradient(135deg, #4A3FB3 0%, #8360BB 50%, #CF793D 100%);
+    }
+
+    /* ── Scroll reveal — fluid & premium ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 1.0s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 1.0s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    #neuralCanvas { will-change: transform; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.10s; }
+    .reveal-d2 { transition-delay: 0.20s; }
+    .reveal-d3 { transition-delay: 0.30s; }
+    .reveal-d4 { transition-delay: 0.40s; }
+
+    /* Layered card shadows */
+    .card-shadow {
+      box-shadow: 0 1px 3px rgba(27,26,51,.08), 0 6px 20px rgba(27,26,51,.10), 0 18px 48px rgba(27,26,51,.08);
+    }
+    .card-shadow:hover {
+      box-shadow: 0 2px 6px rgba(91,79,196,.10), 0 10px 30px rgba(91,79,196,.16), 0 28px 60px rgba(91,79,196,.12);
+    }
+
+    .popular-shadow {
+      box-shadow: 0 0 0 1.5px rgba(91,79,196,.22), 0 4px 20px rgba(91,79,196,.12), 0 16px 48px rgba(91,79,196,.09);
+    }
+
+    /* Header */
+    header {
+      transition: background 0.30s cubic-bezier(0.16,1,0.3,1),
+                  box-shadow  0.30s cubic-bezier(0.16,1,0.3,1),
+                  border-color 0.30s cubic-bezier(0.16,1,0.3,1);
+    }
+    .header-bg {
+      background: rgba(244,242,237,.92);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-color: rgba(0,0,0,.07) !important;
+      box-shadow: 0 2px 6px rgba(27,26,51,.06), 0 8px 28px rgba(27,26,51,.09);
+    }
+
+    /* WhatsApp */
+    .btn-wa {
+      background: #25D366;
+      box-shadow: 0 2px 8px rgba(37,211,102,.28), 0 8px 24px rgba(37,211,102,.14);
+      transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+    }
+    .btn-wa:hover { background: #1EBA58; box-shadow: 0 4px 12px rgba(37,211,102,.34), 0 12px 32px rgba(37,211,102,.18); }
+    .btn-wa:active { transform: scale(.97); }
+
+    :focus-visible { outline: 2px solid #5B4FC4; outline-offset: 3px; }
+
+    .field {
+      width: 100%;
+      padding: .75rem 1rem;
+      background: #fff;
+      border: 1.5px solid rgba(27,26,51,.10);
+      border-radius: .75rem;
+      color: #1B1A33;
+      font-size: 0.9375rem;
+      font-family: 'Inter', sans-serif;
+      transition: border-color .2s, box-shadow .2s;
+      appearance: none;
+      box-shadow: 0 1px 3px rgba(27,26,51,.07), 0 5px 16px rgba(27,26,51,.08), 0 14px 36px rgba(27,26,51,.06);
+    }
+    .field::placeholder { color: rgba(27,26,51,.55); }
+    .field:focus {
+      outline: none;
+      border-color: rgba(91,79,196,.50);
+      box-shadow: 0 0 0 3px rgba(91,79,196,.10), 0 2px 8px rgba(91,79,196,.10), 0 10px 28px rgba(91,79,196,.09);
+    }
+
+    .orb { position: absolute; border-radius: 50%; pointer-events: none; }
+
+    /* Hero animations */
+    @keyframes heroFromLeft  { from { opacity:0; transform:translateX(-52px); } to { opacity:1; transform:translateX(0); } }
+    @keyframes heroLiftBlur  { from { opacity:0; transform:translateY(60px) scale(0.93); filter:blur(8px); } to { opacity:1; transform:translateY(0) scale(1); filter:blur(0); } }
+    @keyframes heroFromRight { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
+    @keyframes heroScaleIn   { from { opacity:0; transform:scale(0.82) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+
+    .hero-el    { animation: heroFromLeft 0.80s cubic-bezier(0.16,1,0.3,1) both; }
+    .hero-el-d1 { animation-name:heroLiftBlur;  animation-duration:0.95s; animation-delay:0.18s; }
+    .hero-el-d2 { animation-name:heroFromRight; animation-duration:0.78s; animation-delay:0.38s; }
+    .hero-el-d3 { animation-name:heroScaleIn;   animation-duration:0.72s; animation-timing-function:cubic-bezier(0.34,1.56,0.64,1); animation-delay:0.56s; }
+
+    /* ── Mobile menu — CSS-driven animation ── */
+    #mobileMenu {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: max-height 0.40s cubic-bezier(0.22,1,0.36,1),
+                  opacity    0.30s cubic-bezier(0.22,1,0.36,1),
+                  transform  0.30s cubic-bezier(0.22,1,0.36,1);
+      pointer-events: none;
+    }
+    #mobileMenu.is-open {
+      max-height: 320px;
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* ── Language switcher ── */
+    .lang-btn {
+      font-family: 'Poppins', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      padding: 3px 7px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: color 0.18s, background 0.18s;
+      border: none;
+      background: none;
+    }
+    .lang-btn.active  { background: rgba(91,79,196,.12); color: #5B4FC4; }
+    .lang-btn:not(.active) { color: rgba(27,26,51,.38); }
+    .lang-btn:not(.active):hover { color: rgba(27,26,51,.65); }
+
+    /* ── WhatsApp flotante — animación ── */
+    @keyframes wa-bounce {
+      0%, 100% { transform: translateY(0) scale(1); }
+      30%       { transform: translateY(-8px) scale(1.08); }
+      60%       { transform: translateY(-3px) scale(1.03); }
+    }
+    @keyframes wa-ping {
+      0%   { transform: scale(1); opacity: 0.55; }
+      100% { transform: scale(1.9); opacity: 0; }
+    }
+    .btn-wa-float {
+      position: relative;
+      animation: wa-bounce 2.8s cubic-bezier(0.36,0.07,0.19,0.97) infinite;
+      animation-delay: 2s;
+    }
+    .btn-wa-float::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: #25D366;
+      animation: wa-ping 2.2s ease-out infinite;
+      animation-delay: 2s;
+      z-index: -1;
+    }
+    .btn-wa-float:hover {
+      animation: none;
+      transform: scale(1.1);
+    }
+    .btn-wa-float:active { transform: scale(.95); }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<header class="fixed top-4 left-5 right-5 z-50 border border-transparent rounded-2xl">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 py-3 flex items-center justify-between gap-4">
+
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-2.5 cursor-pointer flex-shrink-0">
+      <img src="brand assets/aurora website logo.png" alt="Aurora Websites logo" class="h-8 w-8 md:h-9 md:w-9 object-contain" width="36" height="36" fetchpriority="high">
+      <span class="font-poppins font-bold text-base md:text-lg text-night tracking-tight leading-none">
+        Aurora <span class="text-violet">Websites</span>
+      </span>
+    </a>
+
+    <!-- Nav desktop -->
+    <nav class="hidden md:flex items-center gap-7" aria-label="Navegación principal">
+      <a href="#servicios" class="text-sm font-bold text-night hover:text-violet transition-colors duration-200 cursor-pointer" data-i18n="nav.servicios">Servicios</a>
+      <a href="#trabajos"  class="text-sm font-bold text-night hover:text-violet transition-colors duration-200 cursor-pointer" data-i18n="nav.trabajos">Trabajos</a>
+      <a href="#nosotros"  class="text-sm font-bold text-night hover:text-violet transition-colors duration-200 cursor-pointer" data-i18n="nav.nosotros">Nosotros</a>
+      <a href="#contacto"  class="text-sm font-bold text-night hover:text-violet transition-colors duration-200 cursor-pointer" data-i18n="nav.contacto">Contacto</a>
+    </nav>
+
+    <!-- Right -->
+    <div class="flex items-center gap-3 flex-shrink-0">
+      <!-- Lang — desktop -->
+      <div class="hidden md:flex items-center gap-0.5">
+        <button class="lang-btn active" id="langBtnEs" onclick="setLanguage('es')">ES</button>
+        <span class="text-night/20 text-xs select-none">|</span>
+        <button class="lang-btn" id="langBtnEn" onclick="setLanguage('en')">EN</button>
+      </div>
+      <!-- CTA desktop -->
+      <a href="#contacto"
+         class="grad-cta hidden md:inline-flex text-white text-sm font-semibold font-poppins px-5 py-2.5 rounded-xl cursor-pointer transition-opacity duration-200 active:scale-95 shadow-sm"
+         data-i18n="nav.cta">Empezar proyecto</a>
+      <!-- Hamburger mobile -->
+      <button id="menuBtn" class="md:hidden flex items-center justify-center w-9 h-9 rounded-lg text-night cursor-pointer"
+              aria-label="Abrir menú" aria-expanded="false">
+        <svg id="iconOpen"  class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="iconClose" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu — no hidden class, controlled purely by CSS animation -->
+  <nav id="mobileMenu" class="md:hidden px-4 pb-4" aria-label="Menú móvil"
+       style="background:rgba(244,242,237,0.97);border-radius:0 0 1rem 1rem;">
+    <div class="flex flex-col gap-0.5 pt-2" style="border-top:1px solid rgba(27,26,51,.08);">
+      <a href="#servicios" class="mobile-nav-link py-2.5 px-3 text-sm font-bold text-night hover:text-violet rounded-lg transition-colors duration-200 cursor-pointer" data-i18n="nav.servicios">Servicios</a>
+      <a href="#trabajos"  class="mobile-nav-link py-2.5 px-3 text-sm font-bold text-night hover:text-violet rounded-lg transition-colors duration-200 cursor-pointer" data-i18n="nav.trabajos">Trabajos</a>
+      <a href="#nosotros"  class="mobile-nav-link py-2.5 px-3 text-sm font-bold text-night hover:text-violet rounded-lg transition-colors duration-200 cursor-pointer" data-i18n="nav.nosotros">Nosotros</a>
+      <a href="#contacto"  class="mobile-nav-link py-2.5 px-3 text-sm font-bold text-night hover:text-violet rounded-lg transition-colors duration-200 cursor-pointer" data-i18n="nav.contacto">Contacto</a>
+      <!-- Lang — mobile -->
+      <div class="flex items-center gap-1 pt-3 pb-0.5 px-3" style="border-top:1px solid rgba(27,26,51,.06);margin-top:4px;">
+        <button class="lang-btn active" id="langBtnEsMobile" onclick="setLanguage('es')">ES</button>
+        <span class="text-night/20 text-xs select-none">|</span>
+        <button class="lang-btn" id="langBtnEnMobile" onclick="setLanguage('en')">EN</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
+
+  <div class="absolute inset-0 pointer-events-none"
+       style="background:linear-gradient(112deg,#F4F2ED 35%,#EDE8F5 65%,#E7DFF4 100%);"></div>
+
+  <div class="absolute inset-y-0 right-0 w-[80%] pointer-events-none overflow-hidden"
+       style="-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.30) 10%,black 25%);
+              mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.30) 10%,black 25%);">
+    <canvas id="neuralCanvas" style="width:100%;height:100%;display:block;"></canvas>
+  </div>
+
+  <div class="absolute bottom-0 left-0 right-0 h-52 pointer-events-none"
+       style="background:linear-gradient(to bottom,transparent 0%,rgba(237,232,245,0.72) 52%,#ede8f5 100%);"></div>
+
+  <div class="max-w-7xl mx-auto px-5 md:px-8 relative w-full">
+    <div class="max-w-[560px]">
+
+      <div class="hero-el flex items-center mb-7">
+        <span class="text-sm font-bold font-poppins tracking-[.18em] uppercase text-violet" data-i18n="hero.eyebrow">
+          Diseño web · Desarrollo · SEO
+        </span>
+      </div>
+
+      <h1 class="hero-el hero-el-d1 font-poppins font-extrabold text-[2.9rem] md:text-[3.9rem] lg:text-[5.1rem] leading-[1.08] tracking-[-0.03em] text-night mb-7">
+        <span data-i18n="hero.h1.line1">Hacemos</span>
+        <span style="background:linear-gradient(135deg,#5B4FC4,#E08A4E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" data-i18n="hero.h1.gradient"> visible</span><br>
+        <span data-i18n="hero.h1.line2">tu negocio</span>
+      </h1>
+
+      <p class="hero-el hero-el-d2 text-lg font-semibold text-night/85 leading-[1.72] mb-11 max-w-[480px]" data-i18n="hero.subtitle">
+        Más clientes, más reservas, más visibilidad para tu negocio. Tu nueva imagen digital, operativa y lista para recibir clientes en cuestión de días.
+      </p>
+
+      <div class="hero-el hero-el-d3 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <a href="#contacto"
+           class="hero-cta-primary text-white font-semibold font-poppins px-8 py-4 rounded-xl cursor-pointer active:scale-95"
+           style="background:#16151E;box-shadow:0 4px 16px rgba(0,0,0,.18),0 12px 32px rgba(0,0,0,.10);">
+          <span style="position:relative;z-index:1;" data-i18n="hero.cta">Empezar proyecto</span>
+        </a>
+        <a href="#trabajos" class="flex items-center gap-2 text-night font-medium text-base hover:text-violet transition-colors duration-200 cursor-pointer group">
+          <span data-i18n="hero.demos">Ver demos</span>
+          <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ SERVICIOS ═══════════════ -->
+<section id="servicios" class="py-28 relative" style="background:linear-gradient(to bottom,#ede8f5 0%,#f3f0fb 6%,#ffffff 20%);">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+
+    <div class="text-center mb-16 reveal">
+      <h2 class="font-poppins font-bold text-4xl md:text-5xl text-night tracking-tight" data-i18n="pricing.heading">Elegí tu plan</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+
+      <!-- Plan 1 -->
+      <div class="reveal card-shadow bg-[#F9F8F5] rounded-2xl p-8 flex flex-col transition-shadow duration-300">
+        <div class="mb-6">
+          <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-5" style="background:rgba(91,79,196,.10);">
+            <svg class="w-5 h-5" fill="none" stroke="#5B4FC4" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="font-poppins font-bold text-xl text-night mb-2" data-i18n="pricing.card1.title">Landing Esencial</h3>
+          <p class="text-night font-semibold text-sm leading-relaxed" data-i18n="pricing.card1.desc">Presencia online básica y profesional para que tus clientes te encuentren.</p>
+        </div>
+        <ul class="space-y-3 mb-9 flex-1">
+          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
+            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#5B4FC4" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span data-i18n="pricing.card1.f1">Diseño personalizado para tu negocio</span>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
+            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#5B4FC4" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span data-i18n="pricing.card1.f2">100% adaptado al celular</span>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
+            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#5B4FC4" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span data-i18n="pricing.card1.f3">Formulario de contacto incluido</span>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
+            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#5B4FC4" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span data-i18n="pricing.card1.f4">Lista para recibir clientes en pocos días</span>
+          </li>
+        </ul>
+        <a href="#contacto" class="block text-center border-2 border-violet text-violet font-semibold font-poppins text-sm py-3.5 rounded-xl hover:bg-violet hover:text-white transition-all duration-200 cursor-pointer" data-i18n="pricing.cta">Empezar</a>
+      </div>
+
+      <!-- Plan 2 — Popular -->
+      <div class="reveal reveal-d1 relative rounded-2xl p-8 flex flex-col popular-shadow"
+           style="background:linear-gradient(160deg,#F2F0FF 0%,#FDFCFB 100%);border:2px solid rgba(91,79,196,.24);">
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+          <span class="grad-cta text-white text-xs font-bold font-poppins px-4 py-1.5 rounded-full tracking-wide whitespace-nowrap" data-i18n="pricing.popular">Más popular</span>
+        </div>
+        <div class="mb-6 mt-2">
+          <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-5" style="background:rgba(91,79,196,.12);">
+            <svg class="w-5 h-5" fill="none" stroke="#5B4FC4" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="font-poppins font-bold text-xl text-night mb-2" data-i18n="pricing.card2.title">Landing + Reservas</h3>
+          <p class="text-night font-semibold text-sm leading-relaxed" data-i18n="pricing.card2.desc">Todo lo anterior más un sistema de turnos para que tu agenda se llene sola.</p>
+        </div>
+        <ul class="space-y-3 mb-9 flex-1">
+          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
+            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#5B4FC4" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span data-i18n="pricing.card2.f1">Todo del plan Esencial</span>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
+            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#5B4FC4" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span data-i18n="pricing.card2.f2">Sistema de reservas y turnos online</span>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
+            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#5B4FC4" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span data-i18n="pricing.card2.f3">Galería de fotos de tu negocio</span>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
+            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#5B4FC4" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span data-i18n="pricing.card2.f4">Google Maps integrado</span>
+          </li>
+        </ul>
+        <a href="#contacto" class="grad-cta block text-center text-white font-semibold font-poppins text-sm py-3.5 rounded-xl hover:opacity-90 transition-opacity duration-200 cursor-pointer" data-i18n="pricing.cta">Empezar</a>
+      </div>
+
+      <!-- Plan 3 — SEO -->
+      <div class="reveal reveal-d2 card-shadow bg-[#F9F8F5] rounded-2xl p-8 flex flex-col transition-shadow duration-300">
+        <div class="mb-6">
+          <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-5" style="background:rgba(224,138,78,.10);">
+            <svg class="w-5 h-5" fill="none" stroke="#E08A4E" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </div>
+          <h3 class="font-poppins font-bold text-xl text-night mb-2" data-i18n="pricing.card3.title">Sitio completo + SEO</h3>
+          <p class="text-night font-semibold text-sm leading-relaxed" data-i18n="pricing.card3.desc">Tu negocio aparece en Google cuando alguien busca lo que ofrecés.</p>
+        </div>
+        <ul class="space-y-3 mb-9 flex-1">
+          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
+            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#E08A4E" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span data-i18n="pricing.card3.f1">Todo del plan Landing + Reservas</span>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
+            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#E08A4E" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span data-i18n="pricing.card3.f2">Optimización para aparecer en Google</span>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
+            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#E08A4E" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span data-i18n="pricing.card3.f3">Optimización SEO local avanzada</span>
+          </li>
+          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
+            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#E08A4E" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            <span data-i18n="pricing.card3.f4">Reportes mensuales de visitas</span>
+          </li>
+        </ul>
+        <a href="#contacto" class="block text-center border-2 border-gold text-gold font-semibold font-poppins text-sm py-3.5 rounded-xl hover:bg-gold hover:text-white transition-all duration-200 cursor-pointer" data-i18n="pricing.cta">Empezar</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ NOSOTROS ═══════════════ -->
+<section id="nosotros" class="py-28 relative overflow-hidden" style="background:linear-gradient(to bottom,#ffffff 0%,#F4F2ED 13%,#F4F2ED 87%,#ffffff 100%);">
+
+  <div class="orb" aria-hidden="true" style="width:480px;height:480px;top:-60px;right:-80px;background:radial-gradient(circle,rgba(91,79,196,.07) 0%,transparent 70%);"></div>
+  <div class="orb" aria-hidden="true" style="width:400px;height:400px;bottom:-60px;left:-80px;background:radial-gradient(circle,rgba(224,138,78,.07) 0%,transparent 70%);"></div>
+
+  <div class="max-w-7xl mx-auto px-5 md:px-8 relative">
+
+    <div class="text-center mb-16 reveal">
+      <h2 class="font-poppins font-bold text-4xl md:text-5xl text-night tracking-tight" data-i18n="nosotros.heading">Tu negocio merece más</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-10 lg:gap-16">
+
+      <div class="reveal">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(91,79,196,.10);">
+          <svg class="w-6 h-6" fill="none" stroke="#5B4FC4" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+        </div>
+        <h3 class="font-poppins font-bold text-xl text-night mb-3" data-i18n="nosotros.card1.title">Más clientes te encuentran</h3>
+        <p class="text-night font-semibold text-sm leading-[1.75]" data-i18n="nosotros.card1.desc">Tu negocio aparece cuando alguien busca dónde comer, dónde cortarse el pelo, o qué hacer cerca. Tu web trabaja para vos las 24 horas.</p>
+      </div>
+
+      <div class="reveal reveal-d1">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(91,79,196,.10);">
+          <svg class="w-6 h-6" fill="none" stroke="#5B4FC4" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h3 class="font-poppins font-bold text-xl text-night mb-3" data-i18n="nosotros.card2.title">Tu negocio, mejor representado</h3>
+        <p class="text-night font-semibold text-sm leading-[1.75]" data-i18n="nosotros.card2.desc">Las fotos, el menú, los horarios — todo en un solo lugar, fácil de ver desde el celular. La primera impresión que merece tu negocio.</p>
+      </div>
+
+      <div class="reveal reveal-d2">
+        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(224,138,78,.10);">
+          <svg class="w-6 h-6" fill="none" stroke="#E08A4E" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <h3 class="font-poppins font-bold text-xl text-night mb-3" data-i18n="nosotros.card3.title">Reservas sin fricción</h3>
+        <p class="text-night font-semibold text-sm leading-[1.75]" data-i18n="nosotros.card3.desc">Que la gente pueda reservar o consultar sin tener que llamarte. Menos llamadas perdidas, más turnos confirmados.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ TRABAJOS ═══════════════ -->
+<section id="trabajos" class="py-28" style="background:linear-gradient(to bottom,#ffffff 0%,#ffffff 82%,#F4F2ED 100%);">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+
+    <div class="text-center mb-16 reveal">
+      <h2 class="font-poppins font-bold text-4xl md:text-5xl text-night tracking-tight" data-i18n="trabajos.heading">Proyectos recientes</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <div class="reveal card-shadow bg-[#F9F8F5] rounded-2xl overflow-hidden transition-shadow duration-300 cursor-pointer group">
+        <div class="relative h-52 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(91,79,196,.13) 0%,rgba(224,138,78,.09) 100%);">
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center" style="background:rgba(91,79,196,.15);">
+              <svg class="w-6 h-6" fill="none" stroke="#5B4FC4" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <span class="font-poppins font-semibold text-xs text-night/65 tracking-[.15em] uppercase" data-i18n="trabajos.soon">Próximamente</span>
+          </div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-poppins font-semibold text-night text-base mb-1" data-i18n="trabajos.card1.title">La Cantina de Marco</h3>
+          <span class="text-xs text-night/70 font-medium tracking-wide uppercase" data-i18n="trabajos.card1.label">Restaurante · Buenos Aires</span>
+        </div>
+      </div>
+
+      <div class="reveal reveal-d1 card-shadow bg-[#F9F8F5] rounded-2xl overflow-hidden transition-shadow duration-300 cursor-pointer group">
+        <div class="relative h-52 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(224,138,78,.11) 0%,rgba(91,79,196,.09) 100%);">
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center" style="background:rgba(224,138,78,.15);">
+              <svg class="w-6 h-6" fill="none" stroke="#E08A4E" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <span class="font-poppins font-semibold text-xs text-night/65 tracking-[.15em] uppercase" data-i18n="trabajos.soon">Próximamente</span>
+          </div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-poppins font-semibold text-night text-base mb-1" data-i18n="trabajos.card2.title">Studio Noir</h3>
+          <span class="text-xs text-night/70 font-medium tracking-wide uppercase" data-i18n="trabajos.card2.label">Salón de estética · Córdoba</span>
+        </div>
+      </div>
+
+      <div class="reveal reveal-d2 card-shadow bg-[#F9F8F5] rounded-2xl overflow-hidden transition-shadow duration-300 cursor-pointer group">
+        <div class="relative h-52 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(91,79,196,.09) 0%,rgba(224,138,78,.13) 100%);">
+          <div class="text-center">
+            <div class="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center" style="background:rgba(91,79,196,.12);">
+              <svg class="w-6 h-6" fill="none" stroke="#5B4FC4" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <span class="font-poppins font-semibold text-xs text-night/65 tracking-[.15em] uppercase" data-i18n="trabajos.soon">Próximamente</span>
+          </div>
+        </div>
+        <div class="p-5">
+          <h3 class="font-poppins font-semibold text-night text-base mb-1" data-i18n="trabajos.card3.title">Café Amarillo</h3>
+          <span class="text-xs text-night/70 font-medium tracking-wide uppercase" data-i18n="trabajos.card3.label">Cafetería · Rosario</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ CONTACTO ═══════════════ -->
+<section id="contacto" class="py-28" style="background:#F4F2ED;">
+  <div class="max-w-xl mx-auto px-5 md:px-8">
+
+    <div class="text-center mb-12 reveal">
+      <h2 class="font-poppins font-bold text-4xl md:text-5xl text-night tracking-tight mb-4" data-i18n-html="contacto.heading">¿Listo para<br>empezar?</h2>
+      <p class="text-night font-semibold leading-relaxed text-base" data-i18n="contacto.subtitle">
+        Contanos sobre tu negocio y te respondemos en el día con una propuesta a medida.
+      </p>
+    </div>
+
+    <div class="reveal reveal-d1 text-center mb-10">
+      <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20una%20web%20para%20mi%20negocio"
+         target="_blank" rel="noopener noreferrer"
+         class="btn-wa inline-flex items-center gap-3 text-white font-semibold font-poppins px-8 py-4 rounded-2xl cursor-pointer text-base">
+        <svg class="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        <span data-i18n="contacto.wa">Escribinos por WhatsApp</span>
+      </a>
+    </div>
+
+    <div class="reveal reveal-d1 flex items-center gap-4 mb-10">
+      <div class="h-px flex-1" style="background:rgba(27,26,51,.10);"></div>
+      <span class="text-sm text-night font-bold whitespace-nowrap" data-i18n="contacto.divider">o completá el formulario</span>
+      <div class="h-px flex-1" style="background:rgba(27,26,51,.10);"></div>
+    </div>
+
+    <form class="reveal reveal-d2 space-y-4" onsubmit="handleSubmit(event)" novalidate>
+
+      <div>
+        <label for="nombre" class="block text-sm font-bold text-night mb-1.5" data-i18n="contacto.nombre.label">Nombre</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required class="field"
+               data-i18n-placeholder="contacto.nombre.placeholder">
+      </div>
+
+      <div>
+        <label for="negocio" class="block text-sm font-bold text-night mb-1.5" data-i18n="contacto.negocio.label">Tipo de negocio</label>
+        <div class="relative">
+          <select id="negocio" name="negocio" required class="field cursor-pointer pr-10">
+            <option value="" disabled selected data-i18n="contacto.negocio.placeholder">Seleccioná una opción</option>
+            <option value="restaurante" data-i18n="contacto.negocio.o1">Restaurante / Bar</option>
+            <option value="salon"       data-i18n="contacto.negocio.o2">Salón de estética / Peluquería</option>
+            <option value="cafe"        data-i18n="contacto.negocio.o3">Café / Confitería</option>
+            <option value="comercio"    data-i18n="contacto.negocio.o4">Comercio local</option>
+            <option value="servicio"    data-i18n="contacto.negocio.o5">Servicio profesional</option>
+            <option value="otro"        data-i18n="contacto.negocio.o6">Otro</option>
+          </select>
+          <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-night/65 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </div>
+      </div>
+
+      <div>
+        <label for="mensaje" class="block text-sm font-bold text-night mb-1.5" data-i18n="contacto.mensaje.label">Contanos sobre tu proyecto</label>
+        <textarea id="mensaje" name="mensaje" rows="4" placeholder="¿Qué necesita tu negocio? ¿Ya tenés web?"
+                  required class="field resize-none" data-i18n-placeholder="contacto.mensaje.placeholder"></textarea>
+      </div>
+
+      <button type="submit"
+              class="w-full grad-cta text-white font-semibold font-poppins py-4 rounded-xl cursor-pointer transition-all duration-200 active:scale-95 text-base"
+              style="box-shadow:0 4px 16px rgba(91,79,196,.20),0 10px 28px rgba(91,79,196,.10);"
+              data-i18n="contacto.submit">
+        Enviar mensaje
+      </button>
+
+    </form>
+  </div>
+</section>
+
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer style="background:#1B1A33;" class="pt-14 pb-8">
+  <div class="max-w-7xl mx-auto px-5 md:px-8">
+
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10"
+         style="border-bottom:1px solid rgba(255,255,255,.08);">
+      <div>
+        <div class="flex items-center gap-2.5 mb-2.5">
+          <img src="brand assets/aurora website logo.png" alt="Aurora Websites logo" class="h-8 w-8 object-contain" width="32" height="32" loading="lazy">
+          <span class="font-poppins font-bold text-white text-lg tracking-tight">Aurora <span style="color:#9B8FE0;">Websites</span></span>
+        </div>
+        <p class="text-white/65 text-sm mb-1" data-i18n="footer.tagline">Hacemos visible tu negocio</p>
+        <p class="text-white/55 text-xs" data-i18n="footer.location">Flåm, Noruega</p>
+      </div>
+      <nav class="flex flex-wrap gap-x-8 gap-y-2" aria-label="Footer">
+        <a href="#servicios" class="text-white/70 text-sm hover:text-white transition-colors duration-200 cursor-pointer" data-i18n="nav.servicios">Servicios</a>
+        <a href="#trabajos"  class="text-white/70 text-sm hover:text-white transition-colors duration-200 cursor-pointer" data-i18n="nav.trabajos">Trabajos</a>
+        <a href="#nosotros"  class="text-white/70 text-sm hover:text-white transition-colors duration-200 cursor-pointer" data-i18n="nav.nosotros">Nosotros</a>
+        <a href="#contacto"  class="text-white/70 text-sm hover:text-white transition-colors duration-200 cursor-pointer" data-i18n="nav.contacto">Contacto</a>
+      </nav>
+    </div>
+
+    <p class="text-center text-white/50 text-xs mt-8" data-i18n="footer.copyright">&copy; 2026 Aurora Websites. Todos los derechos reservados.</p>
+
+  </div>
+</footer>
+
+
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<script>
+  /* ── Translations ── */
+  const T = {
+    es: {
+      'nav.servicios':'Servicios','nav.trabajos':'Trabajos','nav.nosotros':'Nosotros','nav.contacto':'Contacto','nav.cta':'Empezar proyecto',
+      'hero.eyebrow':'Diseño web · Desarrollo · SEO',
+      'hero.h1.line1':'Hacemos','hero.h1.gradient':' visible','hero.h1.line2':'tu negocio',
+      'hero.subtitle':'Más clientes, más reservas, más visibilidad para tu negocio. Tu nueva imagen digital, operativa y lista para recibir clientes en cuestión de días.',
+      'hero.cta':'Empezar proyecto','hero.demos':'Ver demos',
+      'pricing.heading':'Elegí tu plan','pricing.popular':'Más popular','pricing.cta':'Empezar',
+      'pricing.card1.title':'Landing Esencial','pricing.card1.desc':'Presencia online básica y profesional para que tus clientes te encuentren.',
+      'pricing.card1.f1':'Diseño personalizado para tu negocio','pricing.card1.f2':'100% adaptado al celular',
+      'pricing.card1.f3':'Formulario de contacto incluido','pricing.card1.f4':'Lista para recibir clientes en pocos días',
+      'pricing.card2.title':'Landing + Reservas','pricing.card2.desc':'Todo lo anterior más un sistema de turnos para que tu agenda se llene sola.',
+      'pricing.card2.f1':'Todo del plan Esencial','pricing.card2.f2':'Sistema de reservas y turnos online',
+      'pricing.card2.f3':'Galería de fotos de tu negocio','pricing.card2.f4':'Google Maps integrado',
+      'pricing.card3.title':'Sitio completo + SEO','pricing.card3.desc':'Tu negocio aparece en Google cuando alguien busca lo que ofrecés.',
+      'pricing.card3.f1':'Todo del plan Landing + Reservas','pricing.card3.f2':'Optimización para aparecer en Google',
+      'pricing.card3.f3':'Optimización SEO local avanzada','pricing.card3.f4':'Reportes mensuales de visitas',
+      'nosotros.heading':'Tu negocio merece más',
+      'nosotros.card1.title':'Más clientes te encuentran','nosotros.card1.desc':'Tu negocio aparece cuando alguien busca dónde comer, dónde cortarse el pelo, o qué hacer cerca. Tu web trabaja para vos las 24 horas.',
+      'nosotros.card2.title':'Tu negocio, mejor representado','nosotros.card2.desc':'Las fotos, el menú, los horarios — todo en un solo lugar, fácil de ver desde el celular. La primera impresión que merece tu negocio.',
+      'nosotros.card3.title':'Reservas sin fricción','nosotros.card3.desc':'Que la gente pueda reservar o consultar sin tener que llamarte. Menos llamadas perdidas, más turnos confirmados.',
+      'trabajos.heading':'Proyectos recientes','trabajos.soon':'Próximamente',
+      'trabajos.card1.title':'La Cantina de Marco','trabajos.card1.label':'Restaurante · Buenos Aires',
+      'trabajos.card2.title':'Studio Noir','trabajos.card2.label':'Salón de estética · Córdoba',
+      'trabajos.card3.title':'Café Amarillo','trabajos.card3.label':'Cafetería · Rosario',
+      'contacto.heading':'¿Listo para<br>empezar?',
+      'contacto.subtitle':'Contanos sobre tu negocio y te respondemos en el día con una propuesta a medida.',
+      'contacto.wa':'Escribinos por WhatsApp','contacto.divider':'o completá el formulario',
+      'contacto.nombre.label':'Nombre','contacto.nombre.placeholder':'Tu nombre',
+      'contacto.negocio.label':'Tipo de negocio','contacto.negocio.placeholder':'Seleccioná una opción',
+      'contacto.negocio.o1':'Restaurante / Bar','contacto.negocio.o2':'Salón de estética / Peluquería',
+      'contacto.negocio.o3':'Café / Confitería','contacto.negocio.o4':'Comercio local',
+      'contacto.negocio.o5':'Servicio profesional','contacto.negocio.o6':'Otro',
+      'contacto.mensaje.label':'Contanos sobre tu proyecto','contacto.mensaje.placeholder':'¿Qué necesita tu negocio? ¿Ya tenés web?',
+      'contacto.submit':'Enviar mensaje',
+      'footer.tagline':'Hacemos visible tu negocio','footer.location':'Flåm, Noruega',
+      'footer.copyright':'© 2026 Aurora Websites. Todos los derechos reservados.',
+    },
+    en: {
+      'nav.servicios':'Services','nav.trabajos':'Work','nav.nosotros':'About','nav.contacto':'Contact','nav.cta':'Start project',
+      'hero.eyebrow':'Web design · Development · SEO',
+      'hero.h1.line1':'We make','hero.h1.gradient':' visible','hero.h1.line2':'your business',
+      'hero.subtitle':'More clients, more bookings, more visibility for your business. Your new digital presence, ready to receive clients in a matter of days.',
+      'hero.cta':'Start project','hero.demos':'View demos',
+      'pricing.heading':'Choose your plan','pricing.popular':'Most popular','pricing.cta':'Get started',
+      'pricing.card1.title':'Essential Landing','pricing.card1.desc':'Basic and professional online presence so your clients can find you.',
+      'pricing.card1.f1':'Custom design for your business','pricing.card1.f2':'100% mobile-friendly',
+      'pricing.card1.f3':'Contact form included','pricing.card1.f4':'Ready to receive clients in just days',
+      'pricing.card2.title':'Landing + Bookings','pricing.card2.desc':'Everything above plus a booking system so your calendar fills itself.',
+      'pricing.card2.f1':'Everything in the Essential plan','pricing.card2.f2':'Online booking and appointment system',
+      'pricing.card2.f3':'Photo gallery for your business','pricing.card2.f4':'Google Maps integration',
+      'pricing.card3.title':'Full site + SEO','pricing.card3.desc':'Your business shows up on Google when someone searches for what you offer.',
+      'pricing.card3.f1':'Everything in Landing + Bookings','pricing.card3.f2':'Optimization to appear on Google',
+      'pricing.card3.f3':'Advanced local SEO optimization','pricing.card3.f4':'Monthly traffic reports',
+      'nosotros.heading':'Your business deserves more',
+      'nosotros.card1.title':'More clients find you','nosotros.card1.desc':'Your business appears when someone searches for where to eat, get a haircut, or what to do nearby. Your website works for you 24 hours a day.',
+      'nosotros.card2.title':'Your business, better represented','nosotros.card2.desc':'Photos, menu, hours — all in one place, easy to view from any phone. The first impression your business deserves.',
+      'nosotros.card3.title':'Bookings without friction','nosotros.card3.desc':'Let people book or enquire without having to call you. Fewer missed calls, more confirmed appointments.',
+      'trabajos.heading':'Recent projects','trabajos.soon':'Coming soon',
+      'trabajos.card1.title':'La Cantina de Marco','trabajos.card1.label':'Restaurant · Buenos Aires',
+      'trabajos.card2.title':'Studio Noir','trabajos.card2.label':'Beauty salon · Córdoba',
+      'trabajos.card3.title':'Café Amarillo','trabajos.card3.label':'Café · Rosario',
+      'contacto.heading':'Ready to<br>start?',
+      'contacto.subtitle':"Tell us about your business and we'll reply within the day with a tailored proposal.",
+      'contacto.wa':'Message us on WhatsApp','contacto.divider':'or fill out the form',
+      'contacto.nombre.label':'Name','contacto.nombre.placeholder':'Your name',
+      'contacto.negocio.label':'Business type','contacto.negocio.placeholder':'Select an option',
+      'contacto.negocio.o1':'Restaurant / Bar','contacto.negocio.o2':'Beauty salon / Barbershop',
+      'contacto.negocio.o3':'Café / Bakery','contacto.negocio.o4':'Local shop',
+      'contacto.negocio.o5':'Professional service','contacto.negocio.o6':'Other',
+      'contacto.mensaje.label':'Tell us about your project','contacto.mensaje.placeholder':'What does your business need? Do you already have a website?',
+      'contacto.submit':'Send message',
+      'footer.tagline':'We make your business visible','footer.location':'Flåm, Norway',
+      'footer.copyright':'© 2026 Aurora Websites. All rights reserved.',
+    }
+  };
+
+  let currentLang = 'es';
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    const dict = T[lang];
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const v = dict[el.dataset.i18n];
+      if (v !== undefined) el.textContent = v;
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const v = dict[el.dataset.i18nHtml];
+      if (v !== undefined) el.innerHTML = v;
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const v = dict[el.dataset.i18nPlaceholder];
+      if (v !== undefined) el.placeholder = v;
+    });
+
+    // Update lang button active states
+    ['Es','En'].forEach(l => {
+      const active = l.toLowerCase() === lang;
+      [document.getElementById('langBtn'+l), document.getElementById('langBtn'+l+'Mobile')]
+        .forEach(btn => btn && btn.classList.toggle('active', active));
+    });
+  }
+
+  /* ── Scroll reveal ── */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.06, rootMargin: '0px 0px -50px 0px' });
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    });
+  });
+
+  /* ── Neural network ── */
+  (function(){
+    const canvas = document.getElementById('neuralCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let W, H, nodes, particles, animating = true;
+
+    function rand(a,b){ return a+Math.random()*(b-a); }
+    function resize(){ const r=canvas.getBoundingClientRect(); W=canvas.width=Math.round(r.width); H=canvas.height=Math.round(r.height); }
+
+    /* tier 0=super-hub  tier 1=hub  tier 2=normal */
+    function mkNode(tier){
+      const boost=W>=1024?1.9:1;
+      const spd=[0.18,0.28,0.44][tier]*boost;
+      const r=[rand(7,11),rand(4.5,7.5),rand(1.8,4.2)][tier];
+      const op=[1.0,0.94,rand(.55,.95)][tier];
+      const gold=Math.random()<0.36;
+      return {x:rand(0,W),y:rand(0,H),vx:(Math.random()-.5)*spd,vy:(Math.random()-.5)*spd,r,op,tier,ph:rand(0,Math.PI*2),ps:rand(.006,.018),gold};
+    }
+    function mkParticle(){
+      const boost=W>=1024?1.9:1;
+      const gold=Math.random()<0.28;
+      return {x:rand(0,W),y:rand(0,H),vx:(Math.random()-.5)*.18*boost,vy:(Math.random()-.5)*.18*boost,r:rand(.3,1.8),op:rand(.15,.45),ph:rand(0,Math.PI*2),ps:rand(.003,.013),gold};
+    }
+
+    function init(){
+      nodes=[]; particles=[];
+      const mobile=W<768, tablet=W<1024;
+      const s=mobile?1:tablet?2:2;
+      const h=mobile?5:tablet?6:9;
+      const n=mobile?28:tablet?40:72;
+      const p=mobile?40:tablet?72:130;
+      for(let i=0;i<s;i++) nodes.push(mkNode(0));
+      for(let i=0;i<h;i++) nodes.push(mkNode(1));
+      for(let i=0;i<n;i++) nodes.push(mkNode(2));
+      for(let i=0;i<p;i++) particles.push(mkParticle());
+    }
+
+    function drawBackground(){
+      const spots=[
+        [W*.76,H*.38,W*.60,'rgba(120,90,230,.18)','rgba(150,125,238,.08)'],
+        [W*.28,H*.72,W*.46,'rgba(95,55,200,.14)','rgba(95,55,200,0)'],
+        [W*.58,H*.82,W*.38,'rgba(140,110,240,.12)','rgba(140,110,240,0)'],
+        [W*.90,H*.55,W*.34,'rgba(108,78,220,.10)','rgba(108,78,220,0)'],
+        /* gold warmth spots */
+        [W*.82,H*.22,W*.40,'rgba(224,138,78,.10)','rgba(224,138,78,0)'],
+        [W*.60,H*.68,W*.30,'rgba(240,170,90,.08)','rgba(240,170,90,0)'],
+      ];
+      for(const [cx,cy,sr,c0,c1] of spots){
+        const g=ctx.createRadialGradient(cx,cy,0,cx,cy,sr);
+        g.addColorStop(0,c0); g.addColorStop(1,c1);
+        ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+      }
+    }
+
+    function drawConnections(){
+      const D=W<768?200:W<1024?205:265;
+      const DH=W<768?260:W<1024?270:350;
+      const D2=D*D, DH2=DH*DH;
+      for(let i=0;i<nodes.length;i++){
+        for(let j=i+1;j<nodes.length;j++){
+          const a=nodes[i],b=nodes[j];
+          const dx=b.x-a.x,dy=b.y-a.y,d2=dx*dx+dy*dy;
+          const hubLink=(a.tier<=1&&b.tier<=1);
+          if(d2>(hubLink?DH2:D2)) continue;
+          const d=Math.sqrt(d2),t=1-d/(hubLink?DH:D);
+          const isS=(a.tier===0||b.tier===0),isH=(a.tier<=1||b.tier<=1);
+          const op=t*t*(isS?2.0:isH?1.55:1.15);
+          const lw=isS?4.2:isH?2.9:1.8;
+          const bothGold=a.gold&&b.gold;
+          const mixedGold=a.gold!==b.gold;
+          if(bothGold){
+            if(isH){
+              const g=ctx.createLinearGradient(a.x,a.y,b.x,b.y);
+              g.addColorStop(0,'rgba(224,138,78,'+op+')');
+              g.addColorStop(.5,'rgba(255,210,130,'+(op*2.6)+')');
+              g.addColorStop(1,'rgba(224,138,78,'+op+')');
+              ctx.strokeStyle=g;
+            } else {
+              ctx.strokeStyle='rgba(224,138,78,'+op+')';
+            }
+          } else if(mixedGold){
+            const goldNode=a.gold?a:b, purpNode=a.gold?b:a;
+            const g=ctx.createLinearGradient(goldNode.x,goldNode.y,purpNode.x,purpNode.y);
+            g.addColorStop(0,'rgba(224,138,78,'+op+')');
+            g.addColorStop(.5,'rgba(220,165,210,'+(op*2.6)+')');
+            g.addColorStop(1,'rgba(118,88,225,'+op+')');
+            ctx.strokeStyle=g;
+          } else if(isH){
+            const g=ctx.createLinearGradient(a.x,a.y,b.x,b.y);
+            g.addColorStop(0,'rgba(118,88,225,'+op+')');
+            g.addColorStop(.5,'rgba(205,185,255,'+(op*2.6)+')');
+            g.addColorStop(1,'rgba(118,88,225,'+op+')');
+            ctx.strokeStyle=g;
+          } else {
+            ctx.strokeStyle='rgba(140,108,240,'+op+')';
+          }
+          if(isS){ ctx.shadowBlur=10; ctx.shadowColor=bothGold?'rgba(224,138,78,.72)':mixedGold?'rgba(190,120,200,.62)':'rgba(130,90,225,.72)'; }
+          else if(isH){ ctx.shadowBlur=5; ctx.shadowColor=bothGold?'rgba(224,138,78,.45)':mixedGold?'rgba(190,120,200,.42)':'rgba(118,88,225,.45)'; }
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
+          ctx.lineWidth=lw; ctx.stroke();
+          if(isS||isH) ctx.shadowBlur=0;
+        }
+      }
+    }
+
+    function drawParticles(){
+      for(const p of particles){
+        p.ph+=p.ps; const tw=Math.sin(p.ph)*.42+.58;
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle=p.gold?'rgba(224,155,88,'+(p.op*tw)+')':'rgba(168,142,242,'+(p.op*tw)+')';
+        ctx.fill();
+      }
+    }
+
+    function drawNodes(){
+      for(const n of nodes){
+        n.ph+=n.ps; const gl=Math.sin(n.ph)*.26+.74;
+        const G=n.gold;
+        if(n.tier===0){
+          const halo=ctx.createRadialGradient(n.x,n.y,n.r*.4,n.x,n.y,n.r+24);
+          halo.addColorStop(0,G?'rgba(255,200,120,'+(0.55*gl)+')':'rgba(215,195,255,'+(0.55*gl)+')');
+          halo.addColorStop(1,G?'rgba(224,138,78,0)':'rgba(118,88,225,0)');
+          ctx.beginPath(); ctx.arc(n.x,n.y,n.r+24,0,Math.PI*2); ctx.fillStyle=halo; ctx.fill();
+          ctx.shadowBlur=32; ctx.shadowColor=G?'rgba(224,138,78,'+gl+')':'rgba(130,90,225,'+gl+')';
+          ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2); ctx.fillStyle=G?'rgba(255,205,140,'+(n.op*gl)+')':'rgba(218,204,255,'+(n.op*gl)+')'; ctx.fill();
+          ctx.shadowBlur=0;
+          ctx.beginPath(); ctx.arc(n.x,n.y,n.r*.35,0,Math.PI*2); ctx.fillStyle='rgba(255,255,255,'+(0.98*gl)+')'; ctx.fill();
+        } else if(n.tier===1){
+          const halo=ctx.createRadialGradient(n.x,n.y,n.r*.4,n.x,n.y,n.r+17);
+          halo.addColorStop(0,G?'rgba(255,185,105,'+(0.44*gl)+')':'rgba(190,170,250,'+(0.44*gl)+')');
+          halo.addColorStop(1,G?'rgba(224,138,78,0)':'rgba(118,88,225,0)');
+          ctx.beginPath(); ctx.arc(n.x,n.y,n.r+17,0,Math.PI*2); ctx.fillStyle=halo; ctx.fill();
+          ctx.shadowBlur=22; ctx.shadowColor=G?'rgba(210,120,55,'+(0.98*gl)+')':'rgba(110,80,215,'+(0.98*gl)+')';
+          ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2); ctx.fillStyle=G?'rgba(255,190,120,'+(n.op*gl)+')':'rgba(208,190,254,'+(n.op*gl)+')'; ctx.fill();
+          ctx.shadowBlur=0;
+          ctx.beginPath(); ctx.arc(n.x,n.y,n.r*.38,0,Math.PI*2); ctx.fillStyle='rgba(255,253,248,'+(0.98*gl)+')'; ctx.fill();
+        } else {
+          ctx.shadowBlur=12; ctx.shadowColor=G?'rgba(210,120,55,'+(0.85*gl)+')':'rgba(110,80,215,'+(0.85*gl)+')';
+          ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2); ctx.fillStyle=G?'rgba(230,155,88,'+(n.op*gl)+')':'rgba(165,135,248,'+(n.op*gl)+')'; ctx.fill();
+          ctx.shadowBlur=0;
+          ctx.beginPath(); ctx.arc(n.x,n.y,n.r*.32,0,Math.PI*2); ctx.fillStyle=G?'rgba(255,225,185,'+(0.90*gl)+')':'rgba(228,218,252,'+(0.90*gl)+')'; ctx.fill();
+        }
+      }
+    }
+
+    function update(){
+      for(const n of nodes){ n.x+=n.vx; n.y+=n.vy; if(n.x<-30)n.x=W+30; else if(n.x>W+30)n.x=-30; if(n.y<-30)n.y=H+30; else if(n.y>H+30)n.y=-30; }
+      for(const p of particles){ p.x+=p.vx; p.y+=p.vy; if(p.x<-5)p.x=W+5; else if(p.x>W+5)p.x=-5; if(p.y<-5)p.y=H+5; else if(p.y>H+5)p.y=-5; }
+    }
+
+    /* Pausa el canvas cuando no es visible — sin lag al hacer scroll */
+    new IntersectionObserver(
+      (entries) => { animating = entries[0].isIntersecting; },
+      { rootMargin: '200px' }
+    ).observe(canvas);
+
+    let last=0;
+    /* 33ms = ~30fps en vez de ~66fps: mitad de carga de CPU, misma sensación visual */
+    function loop(ts){ requestAnimationFrame(loop); if(!animating||ts-last<33)return; last=ts; ctx.clearRect(0,0,W,H); drawBackground(); drawConnections(); drawParticles(); drawNodes(); update(); }
+    resize(); init(); requestAnimationFrame(loop);
+    /* Debounce resize: evita re-inicializar el canvas decenas de veces al redimensionar */
+    let _rt;
+    window.addEventListener('resize',function(){ clearTimeout(_rt); _rt=setTimeout(function(){ resize(); init(); },200); },{ passive:true });
+  })();
+
+  /* ── Navbar scroll ── */
+  (function(){
+    const hdr=document.querySelector('header');
+    function tick(){ window.scrollY>60?hdr.classList.add('header-bg'):hdr.classList.remove('header-bg'); }
+    window.addEventListener('scroll',tick,{passive:true}); tick();
+  })();
+
+  /* ── Mobile menu ── */
+  (function(){
+    const btn=document.getElementById('menuBtn');
+    const menu=document.getElementById('mobileMenu');
+    const open=document.getElementById('iconOpen');
+    const close=document.getElementById('iconClose');
+    const hdr=document.querySelector('header');
+
+    function openMenu(){
+      menu.classList.add('is-open');
+      open.classList.add('hidden'); close.classList.remove('hidden');
+      btn.setAttribute('aria-expanded','true');
+      hdr.classList.add('header-bg');
+    }
+    function closeMenu(){
+      menu.classList.remove('is-open');
+      open.classList.remove('hidden'); close.classList.add('hidden');
+      btn.setAttribute('aria-expanded','false');
+      if(window.scrollY<=60) hdr.classList.remove('header-bg');
+    }
+
+    btn.addEventListener('click',()=>menu.classList.contains('is-open')?closeMenu():openMenu());
+    document.querySelectorAll('.mobile-nav-link').forEach(l=>l.addEventListener('click',closeMenu));
+  })();
+
+  /* ── Form submit ── */
+  function handleSubmit(e){
+    e.preventDefault();
+    const btn=e.target.querySelector('button[type="submit"]');
+    const orig=btn.textContent;
+    btn.textContent=currentLang==='es'?'¡Mensaje enviado!':'Message sent!';
+    btn.disabled=true; btn.style.opacity='.7';
+    setTimeout(()=>{ btn.textContent=orig; btn.disabled=false; btn.style.opacity='1'; e.target.reset(); },3000);
+  }
+</script>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20una%20web%20para%20mi%20negocio"
+   target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp"
+   class="btn-wa btn-wa-float fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center cursor-pointer">
+  <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+</body>
+</html>
