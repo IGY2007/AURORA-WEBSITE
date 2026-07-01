@@ -1,1008 +1,1560 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aurora Websites — Hacemos visible tu negocio</title>
-  <link rel="preconnect" href="https://cdn.tailwindcss.com">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="dns-prefetch" href="//wa.me">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"></noscript>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Websites — Hacemos Visible Tu Negocio</title>
+    <meta name="description" content="Landing pages modernas, eficientes y preciosas para negocios locales. Más clientes, más reservas, más visibilidad.">
+    <link rel="icon" href="logo 2.0.jpeg">
 
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            violet: '#5B4FC4',
-            gold:   '#E08A4E',
-            cream:  '#F4F2ED',
-            night:  '#1B1A33',
-          },
-          fontFamily: {
-            poppins: ['Poppins', 'sans-serif'],
-            inter:   ['Inter', 'sans-serif'],
-          }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ================================================
+           VARIABLES — CAMBIÁ SOLO ESTAS 2 PARA REDESIGN
+           ================================================ */
+        :root {
+            --color-primario: #6C3CE1;
+            --color-secundario: #00D4FF;
+
+            /* Derivados */
+            --primario-dark:    #4A28A8;
+            --primario-light:   #9B6EFF;
+            --primario-glow:    rgba(108, 60, 225, 0.35);
+            --secundario-glow:  rgba(0, 212, 255, 0.25);
+            --accent-gold:      #F4C460;
+
+            /* Superficies */
+            --bg:               #07070F;
+            --glass:            rgba(255,255,255,0.045);
+            --glass-hover:      rgba(255,255,255,0.085);
+            --border:           rgba(255,255,255,0.08);
+            --border-hover:     rgba(255,255,255,0.18);
+
+            /* Texto */
+            --txt:              #FFFFFF;
+            --txt-2:            rgba(255,255,255,0.68);
+            --txt-3:            rgba(255,255,255,0.38);
+
+            /* Gradientes */
+            --grad:             linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+            --grad-gold:        linear-gradient(135deg, var(--color-primario), var(--accent-gold));
+
+            /* Layout */
+            --py:    clamp(80px, 10vw, 130px);
+            --px:    clamp(20px, 5vw, 72px);
+            --r-xl:  24px;
+            --r-lg:  18px;
+            --r-md:  12px;
+
+            /* Tipografía display (títulos + logo) */
+            --font-display: 'Fredoka', 'Outfit', sans-serif;
         }
-      }
-    }
-  </script>
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; }
+        /* ================================================
+           RESET
+           ================================================ */
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body {
+            font-family:'Outfit',sans-serif;
+            background:var(--bg);
+            color:var(--txt);
+            overflow-x:hidden;
+            -webkit-font-smoothing:antialiased;
+        }
+        a { text-decoration:none; color:inherit; }
+        img { max-width:100%; display:block; }
+        ul { list-style:none; }
 
-    html { scroll-behavior: smooth; font-size: 106.25%; }
+        /* ================================================
+           UTILIDADES
+           ================================================ */
+        .container { max-width:1180px; margin:0 auto; padding:0 var(--px); }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: #F4F2ED;
-      color: #1B1A33;
-      -webkit-font-smoothing: antialiased;
-    }
+        .grad-text {
+            background:var(--grad);
+            -webkit-background-clip:text;
+            -webkit-text-fill-color:transparent;
+            background-clip:text;
+        }
 
-    h1, h2, h3, h4, .font-poppins { font-family: 'Poppins', sans-serif; }
+        .label {
+            display:inline-flex; align-items:center; gap:8px;
+            font-size:.72rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase;
+            color:var(--color-secundario); margin-bottom:14px;
+        }
+        .label::before {
+            content:''; display:block; width:22px; height:2px;
+            background:var(--color-secundario); border-radius:2px;
+        }
 
-    .grad-cta { font-size: 14px; }
-    .btn-wa, button[type="submit"] { font-size: 16px; }
-    .hero-cta-primary {
-      font-size: 16px;
-      position: relative;
-      overflow: hidden;
-      transition: box-shadow 0.32s cubic-bezier(0.16,1,0.3,1);
-    }
-    .hero-cta-primary::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, #5B4FC4 0%, #9470CC 50%, #E08A4E 100%);
-      opacity: 0;
-      transition: opacity 0.32s cubic-bezier(0.16,1,0.3,1);
-      border-radius: inherit;
-    }
-    .hero-cta-primary:hover::before { opacity: 1; }
-    .hero-cta-primary:hover {
-      box-shadow: 0 4px 20px rgba(91,79,196,.36), 0 14px 36px rgba(224,138,78,.18) !important;
-    }
+        .section-title {
+            font-family:var(--font-display);
+            font-size:clamp(1.9rem,4.2vw,3.2rem);
+            font-weight:600; line-height:1.08; letter-spacing:-.01em;
+        }
+        .section-sub {
+            font-size:clamp(.9rem,1.4vw,1.05rem);
+            color:var(--txt-2); line-height:1.75; margin-top:14px;
+            max-width:520px;
+        }
+        .section-header { margin-bottom:clamp(40px,6vw,68px); }
 
-    .grad-cta {
-      background: linear-gradient(135deg, #5B4FC4 0%, #9470CC 50%, #E08A4E 100%);
-    }
-    .grad-cta:hover {
-      background: linear-gradient(135deg, #4A3FB3 0%, #8360BB 50%, #CF793D 100%);
-    }
+        /* Reveal animations */
+        .rv  { opacity:0; transform:translateY(36px); transition:opacity .7s ease,transform .7s ease; }
+        .rvl { opacity:0; transform:translateX(-36px); transition:opacity .7s ease,transform .7s ease; }
+        .rvr { opacity:0; transform:translateX(36px); transition:opacity .7s ease,transform .7s ease; }
+        .rv.on,.rvl.on,.rvr.on { opacity:1; transform:none; }
+        .d1{transition-delay:.10s} .d2{transition-delay:.20s}
+        .d3{transition-delay:.30s} .d4{transition-delay:.40s}
+        .d5{transition-delay:.50s}
 
-    /* ── Scroll reveal — fluid & premium ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 1.0s cubic-bezier(0.22, 1, 0.36, 1),
-                  transform 1.0s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    #neuralCanvas { will-change: transform; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-d1 { transition-delay: 0.10s; }
-    .reveal-d2 { transition-delay: 0.20s; }
-    .reveal-d3 { transition-delay: 0.30s; }
-    .reveal-d4 { transition-delay: 0.40s; }
+        /* ================================================
+           BUTTONS
+           ================================================ */
+        .btn {
+            display:inline-flex; align-items:center; justify-content:center; gap:8px;
+            padding:13px 26px; border-radius:50px;
+            font-family:'Outfit',sans-serif; font-size:.92rem; font-weight:700;
+            cursor:pointer; border:none; transition:all .3s ease;
+            white-space:nowrap; text-decoration:none;
+        }
+        .btn-lg { padding:16px 38px; font-size:1rem; }
 
-    /* Layered card shadows */
-    .card-shadow {
-      box-shadow: 0 1px 3px rgba(27,26,51,.08), 0 6px 20px rgba(27,26,51,.10), 0 18px 48px rgba(27,26,51,.08);
-    }
-    .card-shadow:hover {
-      box-shadow: 0 2px 6px rgba(91,79,196,.10), 0 10px 30px rgba(91,79,196,.16), 0 28px 60px rgba(91,79,196,.12);
-    }
+        .btn-primary {
+            background:var(--grad); color:#fff;
+            box-shadow:0 4px 20px var(--primario-glow);
+        }
+        .btn-primary:hover {
+            transform:translateY(-2px) scale(1.02);
+            box-shadow:0 8px 32px var(--primario-glow), 0 4px 16px var(--secundario-glow);
+        }
 
-    .popular-shadow {
-      box-shadow: 0 0 0 1.5px rgba(91,79,196,.22), 0 4px 20px rgba(91,79,196,.12), 0 16px 48px rgba(91,79,196,.09);
-    }
+        .btn-ghost {
+            background:transparent; color:#fff;
+            border:1.5px solid var(--border-hover);
+        }
+        .btn-ghost:hover {
+            background:var(--glass-hover);
+            border-color:var(--color-secundario);
+            color:var(--color-secundario);
+            transform:translateY(-2px);
+        }
 
-    /* Header */
-    header {
-      transition: background 0.30s cubic-bezier(0.16,1,0.3,1),
-                  box-shadow  0.30s cubic-bezier(0.16,1,0.3,1),
-                  border-color 0.30s cubic-bezier(0.16,1,0.3,1);
-    }
-    .header-bg {
-      background: rgba(244,242,237,.92);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border-color: rgba(0,0,0,.07) !important;
-      box-shadow: 0 2px 6px rgba(27,26,51,.06), 0 8px 28px rgba(27,26,51,.09);
-    }
+        .btn-wa {
+            background:linear-gradient(135deg,#25D366,#128C7E); color:#fff;
+            font-size:1rem; padding:16px 38px;
+            box-shadow:0 4px 20px rgba(37,211,102,.3);
+        }
+        .btn-wa:hover {
+            transform:translateY(-3px) scale(1.02);
+            box-shadow:0 8px 32px rgba(37,211,102,.55);
+        }
 
-    /* WhatsApp */
-    .btn-wa {
-      background: #25D366;
-      box-shadow: 0 2px 8px rgba(37,211,102,.28), 0 8px 24px rgba(37,211,102,.14);
-      transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
-    }
-    .btn-wa:hover { background: #1EBA58; box-shadow: 0 4px 12px rgba(37,211,102,.34), 0 12px 32px rgba(37,211,102,.18); }
-    .btn-wa:active { transform: scale(.97); }
+        /* ================================================
+           NAVBAR
+           ================================================ */
+        .nav {
+            position:fixed; top:0; left:0; right:0; z-index:1000;
+            padding:20px 0;
+            background:rgba(7,7,15,0);
+            backdrop-filter:blur(0px);
+            -webkit-backdrop-filter:blur(0px);
+            border-bottom:1px solid rgba(255,255,255,0);
+            box-shadow:none;
+            transition:
+                padding .6s cubic-bezier(.4,0,.2,1),
+                background .7s cubic-bezier(.4,0,.2,1),
+                backdrop-filter .7s cubic-bezier(.4,0,.2,1),
+                -webkit-backdrop-filter .7s cubic-bezier(.4,0,.2,1),
+                border-color .7s cubic-bezier(.4,0,.2,1),
+                box-shadow .7s cubic-bezier(.4,0,.2,1);
+        }
+        .nav.stuck {
+            padding:11px 0;
+            background:rgba(7,7,15,.88);
+            backdrop-filter:blur(22px);
+            -webkit-backdrop-filter:blur(22px);
+            border-bottom:1px solid var(--border);
+            box-shadow:0 4px 30px rgba(0,0,0,.4);
+        }
+        .nav-inner {
+            display:flex; align-items:center; justify-content:space-between;
+        }
 
-    :focus-visible { outline: 2px solid #5B4FC4; outline-offset: 3px; }
+        /* Logo */
+        .logo { display:flex; align-items:center; gap:9px; font-size:1.15rem; font-weight:800; line-height:1; }
+        .logo-name { font-family:var(--font-display); font-weight:600; }
+        .logo-name span { color:var(--color-secundario); }
+        .logo-ring {
+            width:36px; height:36px; border-radius:50%;
+            background:var(--grad); display:flex; align-items:center; justify-content:center;
+            box-shadow:0 0 14px var(--primario-glow); flex-shrink:0;
+        }
+        .logo-ring svg { display:block; }
+        .logo-name span { color:var(--color-secundario); }
 
-    .field {
-      width: 100%;
-      padding: .75rem 1rem;
-      background: #fff;
-      border: 1.5px solid rgba(27,26,51,.10);
-      border-radius: .75rem;
-      color: #1B1A33;
-      font-size: 0.9375rem;
-      font-family: 'Inter', sans-serif;
-      transition: border-color .2s, box-shadow .2s;
-      appearance: none;
-      box-shadow: 0 1px 3px rgba(27,26,51,.07), 0 5px 16px rgba(27,26,51,.08), 0 14px 36px rgba(27,26,51,.06);
-    }
-    .field::placeholder { color: rgba(27,26,51,.55); }
-    .field:focus {
-      outline: none;
-      border-color: rgba(91,79,196,.50);
-      box-shadow: 0 0 0 3px rgba(91,79,196,.10), 0 2px 8px rgba(91,79,196,.10), 0 10px 28px rgba(91,79,196,.09);
-    }
+        .nav-links { display:flex; align-items:center; gap:32px; }
+        .nav-links a {
+            position:relative; display:inline-block;
+            font-size:.88rem; font-weight:500; color:var(--txt-2); transition:color .25s;
+            padding-bottom:6px;
+        }
+        .nav-links a::after {
+            content:''; position:absolute; left:0; bottom:0;
+            width:100%; height:2px; border-radius:2px;
+            background:var(--color-secundario);
+            transform:scaleX(0); transform-origin:left;
+            transition:transform .3s cubic-bezier(.4,0,.2,1);
+        }
+        .nav-links a:hover { color:var(--color-secundario); }
+        .nav-links a:hover::after { transform:scaleX(1); }
 
-    .orb { position: absolute; border-radius: 50%; pointer-events: none; }
+        .nav-cta-d { display:flex; align-items:center; gap:16px; }
 
-    /* Hero animations */
-    @keyframes heroFromLeft  { from { opacity:0; transform:translateX(-52px); } to { opacity:1; transform:translateX(0); } }
-    @keyframes heroLiftBlur  { from { opacity:0; transform:translateY(60px) scale(0.93); filter:blur(8px); } to { opacity:1; transform:translateY(0) scale(1); filter:blur(0); } }
-    @keyframes heroFromRight { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
-    @keyframes heroScaleIn   { from { opacity:0; transform:scale(0.82) translateY(20px); } to { opacity:1; transform:scale(1) translateY(0); } }
+        /* Language switch */
+        .lang-switch {
+            display:flex; align-items:center; gap:2px;
+            background:rgba(255,255,255,.06); border:1px solid var(--border-hover);
+            border-radius:50px; padding:4px; cursor:pointer; font-family:'Outfit',sans-serif;
+        }
+        .lang-opt {
+            display:flex; align-items:center; justify-content:center;
+            width:32px; height:24px; border-radius:50px;
+            font-size:.72rem; font-weight:700; color:var(--txt-2);
+            transition:background .25s, color .25s;
+        }
+        .lang-opt.on { background:var(--grad); color:#fff; }
+        .lang-switch:hover .lang-opt:not(.on) { color:#fff; }
+        .lang-switch-mob { margin:20px auto 0; }
 
-    .hero-el    { animation: heroFromLeft 0.80s cubic-bezier(0.16,1,0.3,1) both; }
-    .hero-el-d1 { animation-name:heroLiftBlur;  animation-duration:0.95s; animation-delay:0.18s; }
-    .hero-el-d2 { animation-name:heroFromRight; animation-duration:0.78s; animation-delay:0.38s; }
-    .hero-el-d3 { animation-name:heroScaleIn;   animation-duration:0.72s; animation-timing-function:cubic-bezier(0.34,1.56,0.64,1); animation-delay:0.56s; }
+        /* Hamburger */
+        .burger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:6px; }
+        .burger span { display:block; width:23px; height:2px; background:#fff; border-radius:2px; transition:all .3s; }
+        .burger.on span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+        .burger.on span:nth-child(2) { opacity:0; }
+        .burger.on span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
 
-    /* ── Mobile menu — CSS-driven animation ── */
-    #mobileMenu {
-      overflow: hidden;
-      max-height: 0;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: max-height 0.40s cubic-bezier(0.22,1,0.36,1),
-                  opacity    0.30s cubic-bezier(0.22,1,0.36,1),
-                  transform  0.30s cubic-bezier(0.22,1,0.36,1);
-      pointer-events: none;
-    }
-    #mobileMenu.is-open {
-      max-height: 320px;
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
+        /* Mobile slide-down panel */
+        .mob-menu {
+            position:fixed; top:0; left:0; right:0; z-index:998;
+            background:rgba(7,7,15,.96); backdrop-filter:blur(32px); -webkit-backdrop-filter:blur(32px);
+            border-bottom:1px solid rgba(255,255,255,.09);
+            box-shadow:0 12px 48px rgba(0,0,0,.7);
+            transform:translateY(-110%);
+            transition:transform .45s cubic-bezier(.4,0,.2,1);
+            padding:84px 28px 28px;
+            flex-direction:column; gap:0;
+            display:flex;
+            pointer-events:none;
+        }
+        .mob-menu.on { transform:translateY(0); pointer-events:auto; }
+        .mob-menu a.ml {
+            font-size:1.05rem; font-weight:600; color:var(--txt-2);
+            padding:15px 4px; border-bottom:1px solid rgba(255,255,255,.06);
+            transition:color .2s, padding-left .2s;
+            display:block;
+        }
+        .mob-menu a.ml:hover { color:var(--color-secundario); padding-left:10px; }
+        .mob-menu a.ml:last-of-type { border-bottom:none; }
+        .mob-cta { margin-top:20px; display:block; text-align:center; }
 
-    /* ── Language switcher ── */
-    .lang-btn {
-      font-family: 'Poppins', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .05em;
-      padding: 3px 7px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: color 0.18s, background 0.18s;
-      border: none;
-      background: none;
-    }
-    .lang-btn.active  { background: rgba(91,79,196,.12); color: #5B4FC4; }
-    .lang-btn:not(.active) { color: rgba(27,26,51,.38); }
-    .lang-btn:not(.active):hover { color: rgba(27,26,51,.65); }
+        /* ================================================
+           HERO
+           ================================================ */
+        .hero {
+            position:relative; min-height:100vh;
+            display:flex; align-items:center; justify-content:center; overflow:hidden;
+        }
 
-    /* ── WhatsApp flotante — animación ── */
-    @keyframes wa-bounce {
-      0%, 100% { transform: translateY(0) scale(1); }
-      30%       { transform: translateY(-8px) scale(1.08); }
-      60%       { transform: translateY(-3px) scale(1.03); }
-    }
-    @keyframes wa-ping {
-      0%   { transform: scale(1); opacity: 0.55; }
-      100% { transform: scale(1.9); opacity: 0; }
-    }
-    .btn-wa-float {
-      position: relative;
-      animation: wa-bounce 2.8s cubic-bezier(0.36,0.07,0.19,0.97) infinite;
-      animation-delay: 2s;
-    }
-    .btn-wa-float::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: #25D366;
-      animation: wa-ping 2.2s ease-out infinite;
-      animation-delay: 2s;
-      z-index: -1;
-    }
-    .btn-wa-float:hover {
-      animation: none;
-      transform: scale(1.1);
-    }
-    .btn-wa-float:active { transform: scale(.95); }
-  </style>
+        .hero-vid {
+            position:absolute; inset:0; z-index:0; background:#0A0A0F;
+        }
+        .hero-vid canvas {
+            display:block; width:100%; height:100%;
+        }
+
+        .hero-overlay {
+            position:absolute; inset:0; z-index:1;
+            background:
+                radial-gradient(ellipse at center, transparent 22%, rgba(7,7,15,.86) 100%),
+                linear-gradient(to bottom,
+                    rgba(7,7,15,.62) 0%,
+                    rgba(7,7,15,.42) 40%,
+                    rgba(7,7,15,.88) 100%);
+        }
+        .hero-overlay::after {
+            content:''; position:absolute; inset:0;
+            background:
+                radial-gradient(ellipse at 0% 50%, rgba(108,60,225,.22) 0%, transparent 45%),
+                radial-gradient(ellipse at 100% 55%, rgba(0,212,255,.16) 0%, transparent 45%);
+        }
+
+        .hero-fade-bottom {
+            position:absolute; left:0; right:0; bottom:0; height:240px; z-index:1;
+            background:linear-gradient(to bottom, transparent, var(--bg) 90%);
+            pointer-events:none;
+        }
+
+        .hero-content {
+            position:relative; z-index:2; text-align:center;
+            max-width:980px; padding:clamp(96px,16vh,170px) var(--px) 0;
+        }
+
+        .hero-h1 {
+            font-family:var(--font-display);
+            font-size:clamp(2.6rem,6.1vw,5.6rem);
+            font-weight:600; line-height:1.08; letter-spacing:-.01em;
+            margin-bottom:30px;
+            -webkit-text-stroke: 0.6px rgba(180,140,255,0.28);
+            paint-order: stroke fill;
+            text-shadow:
+                0 2px 0    rgba(108,60,225,0.4),
+                0 4px 10px rgba(108,60,225,0.22),
+                0 10px 26px rgba(108,60,225,0.12),
+                0 0 70px   rgba(108,60,225,0.07);
+        }
+        .hero-shine {
+            display:inline-block;
+            background: linear-gradient(
+                90deg,
+                var(--color-secundario) 0%,
+                var(--primario-light) 45%,
+                var(--color-primario) 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            -webkit-text-stroke: 0.4px rgba(180,140,255,0.15);
+            filter: drop-shadow(0 0 12px rgba(108,60,225,0.3));
+        }
+
+        .hero-sub {
+            font-size:clamp(.95rem,1.8vw,1.2rem);
+            color:var(--txt-2); line-height:1.75;
+            max-width:580px; margin:0 auto 46px;
+        }
+
+        .hero-ctas { display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; }
+
+        .hero-label {
+            display:flex; align-items:center; justify-content:center; gap:16px;
+            font-size:.85rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase;
+            color:rgba(255,255,255,.78); margin-bottom:24px;
+        }
+        .hero-label::before, .hero-label::after {
+            content:''; width:28px; height:1px; background:var(--border-hover); flex-shrink:0;
+        }
+
+        .hero-stats {
+            display:flex; align-items:center; justify-content:center;
+            flex-wrap:wrap; margin-top:60px;
+        }
+        .hero-stat {
+            display:flex; align-items:center; gap:12px;
+            padding:0 26px; text-align:left;
+        }
+        .hero-stat + .hero-stat { border-left:1px solid var(--border); }
+        .hero-stat-ico {
+            width:38px; height:38px; border-radius:50%; flex-shrink:0;
+            background:rgba(255,255,255,.06); border:1px solid var(--border-hover);
+            display:flex; align-items:center; justify-content:center;
+            color:var(--color-secundario);
+        }
+        .hero-stat-txt { font-size:.82rem; color:var(--txt-2); line-height:1.5; }
+        .hero-stat-txt b { color:#fff; font-weight:700; }
+        .hero-stars { color:var(--accent-gold); letter-spacing:2px; font-size:.9rem; }
+
+        /* ---- Dust / fog reveal (hero content only) ---- */
+        .hero-fog-in {
+            opacity:0;
+            animation:heroFogIn 1.6s cubic-bezier(.22,1,.36,1) forwards;
+            will-change:opacity,filter,transform;
+        }
+        .hero-fog-in.d0 { animation-delay:0s; }
+        .hero-fog-in.d1 { animation-delay:.85s; }
+        .hero-fog-in.d2 { animation-delay:1.15s; }
+        .hero-fog-in.d3 { animation-delay:1.4s; }
+
+        @keyframes heroFogIn {
+            0% {
+                opacity:0;
+                filter:blur(14px);
+                transform:translateY(22px) scale(.96);
+            }
+            100% {
+                opacity:1;
+                filter:blur(0px);
+                transform:translateY(0) scale(1);
+            }
+        }
+
+        /* Word-by-word reveal for the headline */
+        .fog-word {
+            display:inline-block;
+            opacity:0;
+            animation:heroFogIn 1s cubic-bezier(.22,1,.36,1) forwards;
+            will-change:opacity,filter,transform;
+        }
+        .fog-word.w1 { animation-delay:0s; }
+        .fog-word.w2 { animation-delay:.12s; }
+        .fog-word.w3 { animation-delay:.24s; }
+        .fog-word.w4 { animation-delay:.42s; }
+        .fog-word.w5 { animation-delay:.58s; }
+        .fog-word.w6 { animation-delay:.70s; }
+
+        @media(max-width:768px){
+            .hero-fog-in { animation-duration:.9s; }
+            .fog-word { animation-duration:.7s; }
+            .hero-stats { display:none; }
+            .hero-label { font-size:.6rem; letter-spacing:.14em; gap:9px; }
+            .hero-label::before, .hero-label::after { width:16px; }
+        }
+
+
+        /* ================================================
+           SECTION (shared)
+           ================================================ */
+        .section { padding:var(--py) 0; }
+
+        /* ================================================
+           PLANES
+           ================================================ */
+        .plans-grid {
+            display:grid; grid-template-columns:repeat(3,1fr); gap:22px; align-items:stretch;
+        }
+        .plan {
+            position:relative; background:var(--glass);
+            backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+            border:1px solid var(--border); border-radius:var(--r-xl);
+            padding:34px 28px; transition:all .4s ease;
+            display:flex; flex-direction:column;
+        }
+        .plan:hover {
+            background:var(--glass-hover); border-color:rgba(108,60,225,.5);
+            transform:translateY(-8px);
+            box-shadow:0 24px 60px rgba(0,0,0,.4), 0 0 32px var(--primario-glow);
+        }
+        .plan.hot {
+            border-color:var(--color-primario);
+            background:rgba(108,60,225,.09);
+            box-shadow:0 0 40px var(--primario-glow);
+        }
+        .plan.hot:hover {
+            box-shadow:0 24px 60px rgba(0,0,0,.5), 0 0 52px var(--primario-glow);
+        }
+        .plan-tag {
+            position:absolute; top:-12px; left:50%; transform:translateX(-50%);
+            background:var(--grad); color:#fff;
+            font-size:.66rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+            padding:4px 14px; border-radius:50px; white-space:nowrap;
+        }
+        .plan-ico {
+            width:46px; height:46px; border-radius:13px;
+            background:var(--grad); display:flex; align-items:center;
+            justify-content:center; margin-bottom:18px; flex-shrink:0;
+        }
+        .plan-name { font-size:1.28rem; font-weight:800; margin-bottom:8px; }
+        .plan-desc { font-size:.88rem; color:var(--txt-2); line-height:1.65; margin-bottom:22px; flex:1; }
+        .plan-list { margin-bottom:28px; display:flex; flex-direction:column; gap:0; }
+        .plan-list li {
+            display:flex; align-items:flex-start; gap:10px;
+            font-size:.86rem; color:var(--txt-2); padding:7px 0;
+            border-bottom:1px solid var(--border);
+        }
+        .plan-list li:last-child { border-bottom:none; }
+        .chk { flex-shrink:0; color:var(--color-secundario); margin-top:1px; }
+        .plan-btn { width:100%; justify-content:center; }
+
+        /* ================================================
+           WHY / BENEFICIOS
+           ================================================ */
+        .why-wrap {
+            background:linear-gradient(180deg,transparent,rgba(108,60,225,.06) 50%,transparent);
+        }
+        .ben-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+        .ben {
+            background:var(--glass); border:1px solid var(--border);
+            border-radius:var(--r-xl); padding:30px 26px;
+            transition:all .3s ease;
+        }
+        .ben:hover {
+            background:var(--glass-hover); border-color:rgba(0,212,255,.3);
+            transform:translateY(-5px);
+            box-shadow:0 12px 40px rgba(0,0,0,.3), 0 0 22px var(--secundario-glow);
+        }
+        .ben-n {
+            font-size:2.4rem; line-height:1;
+            margin-bottom:14px;
+        }
+        .ben-title { font-size:1.08rem; font-weight:700; margin-bottom:8px; }
+        .ben-text { font-size:.88rem; color:var(--txt-2); line-height:1.72; }
+
+        /* ================================================
+           PROCESO
+           ================================================ */
+        .proc-grid {
+            display:grid; grid-template-columns:repeat(4,1fr); gap:22px;
+            position:relative;
+        }
+        .proc-grid::before {
+            content:''; position:absolute; top:35px;
+            left:calc(12.5% + 8px); right:calc(12.5% + 8px); height:1px;
+            background:linear-gradient(90deg,transparent,var(--color-primario),var(--color-secundario),transparent);
+        }
+        .proc-step { text-align:center; position:relative; z-index:1; }
+        .proc-ico {
+            width:70px; height:70px; border-radius:50%;
+            background:rgba(108,60,225,.12);
+            border:2px solid var(--color-primario);
+            display:flex; align-items:center; justify-content:center;
+            margin:0 auto 18px; color:var(--color-secundario);
+            position:relative; transition:all .35s ease;
+        }
+        .proc-step:hover .proc-ico {
+            background:rgba(108,60,225,.25);
+            box-shadow:0 0 24px var(--primario-glow);
+        }
+        .proc-num {
+            position:absolute; bottom:-8px; right:-4px;
+            width:22px; height:22px; border-radius:50%;
+            background:var(--grad); font-size:.62rem; font-weight:900;
+            color:#fff; display:flex; align-items:center; justify-content:center;
+        }
+        .proc-title { font-size:.98rem; font-weight:700; margin-bottom:7px; }
+        .proc-text { font-size:.82rem; color:var(--txt-3); line-height:1.65; }
+
+        /* ================================================
+           PORTFOLIO
+           ================================================ */
+        .port-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+        .port-card {
+            background:var(--glass); border:1px solid var(--border);
+            border-radius:var(--r-xl); overflow:hidden; transition:all .4s ease;
+        }
+        .port-card:hover {
+            transform:translateY(-7px); border-color:rgba(139,92,246,.9);
+            box-shadow:0 22px 50px rgba(0,0,0,.45), 0 0 0 1px rgba(139,92,246,.35), 0 12px 40px rgba(108,60,225,.35);
+        }
+        .port-thumb {
+            aspect-ratio:16/9; position:relative; overflow:hidden;
+            background:linear-gradient(135deg,rgba(108,60,225,.25),rgba(0,212,255,.15));
+            display:flex; align-items:center; justify-content:center;
+        }
+        .port-thumb::before {
+            content:''; position:absolute; inset:0;
+            background:var(--grad); opacity:.08;
+        }
+        .port-thumb-label {
+            font-size:.7rem; letter-spacing:.14em; text-transform:uppercase;
+            color:var(--txt-3); position:relative; z-index:1;
+        }
+        .port-info { padding:18px 22px; }
+        .port-name { font-size:.98rem; font-weight:700; margin-bottom:4px; }
+        .port-type { font-size:.74rem; color:var(--txt-3); text-transform:uppercase; letter-spacing:.1em; }
+
+        /* ================================================
+           FAQ
+           ================================================ */
+        .faq-wrap { max-width:740px; margin:0 auto; }
+        .faq-item {
+            background:var(--glass); border:1px solid var(--border);
+            border-radius:var(--r-lg); margin-bottom:14px; overflow:hidden;
+            transition:border-color .3s ease, background .3s ease;
+        }
+        .faq-item:hover { border-color:rgba(108,60,225,.4); }
+        .faq-q {
+            display:flex; align-items:center; justify-content:space-between; gap:18px;
+            padding:21px 26px; cursor:pointer; user-select:none;
+            font-size:.96rem; font-weight:700;
+        }
+        .faq-icon {
+            flex-shrink:0; width:28px; height:28px; border-radius:50%;
+            background:rgba(108,60,225,.15); display:flex; align-items:center; justify-content:center;
+            color:var(--color-secundario); transition:transform .35s ease, background .3s ease, color .3s ease;
+        }
+        .faq-item.open { background:var(--glass-hover); border-color:rgba(108,60,225,.5); }
+        .faq-item.open .faq-icon { transform:rotate(45deg); background:var(--grad); color:#fff; }
+        .faq-a { max-height:0; overflow:hidden; transition:max-height .4s ease; }
+        .faq-a-inner { padding:0 26px 22px; font-size:.88rem; color:var(--txt-2); line-height:1.7; }
+        .faq-item.open .faq-a { max-height:240px; }
+
+        /* ================================================
+           CTA / CONTACTO
+           ================================================ */
+        .cta-section { position:relative; overflow:hidden; text-align:center; }
+        .cta-glow {
+            position:absolute; inset:0;
+            background:radial-gradient(ellipse at center, rgba(108,60,225,.22) 0%, transparent 68%);
+            pointer-events:none;
+        }
+        .cta-inner { position:relative; z-index:1; }
+        .cta-line {
+            height:2px; border-radius:2px; background:var(--grad);
+            width:72px; margin:0 auto 30px; opacity:.7;
+        }
+        .cta-h { font-size:clamp(2.1rem,5vw,3.8rem); font-weight:900; letter-spacing:-.025em; line-height:1.1; margin-bottom:18px; }
+        .cta-sub { font-size:1.05rem; color:var(--txt-2); max-width:460px; margin:0 auto 36px; line-height:1.72; }
+
+        .or-row {
+            display:flex; align-items:center; justify-content:center; gap:18px;
+            color:var(--txt-3); font-size:.82rem; margin:24px 0;
+        }
+        .or-row::before,.or-row::after {
+            content:''; height:1px; width:80px; background:var(--border-hover);
+        }
+
+        /* Form */
+        .form-wrap { max-width:480px; margin:0 auto; text-align:left; }
+        .fg { margin-bottom:14px; }
+        .fg label { display:block; font-size:.82rem; font-weight:600; color:var(--txt-2); margin-bottom:7px; }
+        .fg input,.fg select,.fg textarea {
+            width:100%; background:rgba(255,255,255,.05);
+            border:1px solid var(--border); border-radius:var(--r-md);
+            padding:13px 16px; color:#fff; font-family:'Outfit',sans-serif;
+            font-size:.92rem; transition:all .3s ease; outline:none; appearance:none;
+        }
+        .fg input::placeholder,.fg textarea::placeholder { color:var(--txt-3); }
+        .fg input:focus,.fg select:focus,.fg textarea:focus {
+            border-color:var(--color-primario);
+            background:rgba(108,60,225,.07);
+            box-shadow:0 0 0 3px var(--primario-glow);
+        }
+        .fg select option { background:#14142a; color:#fff; }
+        .fg textarea { resize:vertical; min-height:96px; }
+        .form-submit { width:100%; padding:15px; font-size:.98rem; }
+
+        /* ================================================
+           FOOTER
+           ================================================ */
+        .footer {
+            background:rgba(255,255,255,.018);
+            border-top:1px solid var(--border); padding:58px 0 28px;
+        }
+        .footer-grid {
+            display:grid; grid-template-columns:1.4fr repeat(3,1fr);
+            gap:36px; margin-bottom:44px;
+        }
+        .footer-brand-tag {
+            font-size:.86rem; color:var(--txt-3); line-height:1.65; margin-top:11px;
+        }
+        .foot-col-t {
+            font-size:.75rem; font-weight:700; letter-spacing:.12em;
+            text-transform:uppercase; color:var(--txt-2); margin-bottom:18px;
+        }
+        .foot-links { display:flex; flex-direction:column; gap:9px; }
+        .foot-links a { font-size:.88rem; color:var(--txt-3); transition:color .25s; }
+        .foot-links a:hover { color:var(--color-secundario); }
+        .foot-bottom {
+            border-top:1px solid var(--border); padding-top:22px;
+            display:flex; align-items:center; justify-content:space-between;
+            font-size:.78rem; color:var(--txt-3); flex-wrap:wrap; gap:10px;
+        }
+
+        /* WhatsApp float */
+        .wa-fab {
+            position:fixed; bottom:26px; right:26px; z-index:999;
+            width:54px; height:54px; border-radius:50%;
+            background:linear-gradient(135deg,#25D366,#128C7E);
+            display:flex; align-items:center; justify-content:center;
+            box-shadow:0 4px 20px rgba(37,211,102,.4);
+            transition:all .3s ease;
+        }
+        .wa-fab:hover { transform:scale(1.12); box-shadow:0 8px 32px rgba(37,211,102,.65); }
+
+        /* ================================================
+           RESPONSIVE
+           ================================================ */
+        @media(max-width:1024px){
+            .plans-grid,.ben-grid,.port-grid { grid-template-columns:repeat(2,1fr); }
+            .proc-grid { grid-template-columns:repeat(2,1fr); }
+            .proc-grid::before { display:none; }
+            .footer-grid { grid-template-columns:repeat(2,1fr); }
+        }
+
+        @media(max-width:768px){
+            .nav-links,.nav-cta-d { display:none; }
+            .burger { display:flex; }
+            .plans-grid,.ben-grid,.port-grid,.proc-grid { grid-template-columns:1fr; }
+            .footer-grid { grid-template-columns:1fr; }
+            .foot-bottom { flex-direction:column; text-align:center; }
+            .hero { min-height: auto; }
+            .hero-content { padding-top: 108px; padding-bottom: 56px; }
+            .hero-h1 { font-size: clamp(3.6rem, 14vw, 5.5rem); line-height:1.0; }
+        }
+
+        @media(max-width:480px){
+            .hero-ctas { flex-direction:column; width:100%; }
+            .hero-ctas .btn { width:100%; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- ═══════════════ HEADER ═══════════════ -->
-<header class="fixed top-4 left-5 right-5 z-50 border border-transparent rounded-2xl">
-  <div class="max-w-7xl mx-auto px-5 md:px-8 py-3 flex items-center justify-between gap-4">
-
-    <!-- Logo -->
-    <a href="#" class="flex items-center gap-2.5 cursor-pointer flex-shrink-0">
-      <img src="brand assets/aurora website logo.png" alt="Aurora Websites logo" class="h-8 w-8 md:h-9 md:w-9 object-contain" width="36" height="36" fetchpriority="high">
-      <span class="font-poppins font-bold text-base md:text-lg text-night tracking-tight leading-none">
-        Aurora <span class="text-violet">Websites</span>
-      </span>
-    </a>
-
-    <!-- Nav desktop -->
-    <nav class="hidden md:flex items-center gap-7" aria-label="Navegación principal">
-      <a href="#servicios" class="text-sm font-bold text-night hover:text-violet transition-colors duration-200 cursor-pointer" data-i18n="nav.servicios">Servicios</a>
-      <a href="#trabajos"  class="text-sm font-bold text-night hover:text-violet transition-colors duration-200 cursor-pointer" data-i18n="nav.trabajos">Trabajos</a>
-      <a href="#nosotros"  class="text-sm font-bold text-night hover:text-violet transition-colors duration-200 cursor-pointer" data-i18n="nav.nosotros">Nosotros</a>
-      <a href="#contacto"  class="text-sm font-bold text-night hover:text-violet transition-colors duration-200 cursor-pointer" data-i18n="nav.contacto">Contacto</a>
-    </nav>
-
-    <!-- Right -->
-    <div class="flex items-center gap-3 flex-shrink-0">
-      <!-- Lang — desktop -->
-      <div class="hidden md:flex items-center gap-0.5">
-        <button class="lang-btn active" id="langBtnEs" onclick="setLanguage('es')">ES</button>
-        <span class="text-night/20 text-xs select-none">|</span>
-        <button class="lang-btn" id="langBtnEn" onclick="setLanguage('en')">EN</button>
-      </div>
-      <!-- CTA desktop -->
-      <a href="#contacto"
-         class="grad-cta hidden md:inline-flex text-white text-sm font-semibold font-poppins px-5 py-2.5 rounded-xl cursor-pointer transition-opacity duration-200 active:scale-95 shadow-sm"
-         data-i18n="nav.cta">Empezar proyecto</a>
-      <!-- Hamburger mobile -->
-      <button id="menuBtn" class="md:hidden flex items-center justify-center w-9 h-9 rounded-lg text-night cursor-pointer"
-              aria-label="Abrir menú" aria-expanded="false">
-        <svg id="iconOpen"  class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        <svg id="iconClose" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-    </div>
-  </div>
-
-  <!-- Mobile menu — no hidden class, controlled purely by CSS animation -->
-  <nav id="mobileMenu" class="md:hidden px-4 pb-4" aria-label="Menú móvil"
-       style="background:rgba(244,242,237,0.97);border-radius:0 0 1rem 1rem;">
-    <div class="flex flex-col gap-0.5 pt-2" style="border-top:1px solid rgba(27,26,51,.08);">
-      <a href="#servicios" class="mobile-nav-link py-2.5 px-3 text-sm font-bold text-night hover:text-violet rounded-lg transition-colors duration-200 cursor-pointer" data-i18n="nav.servicios">Servicios</a>
-      <a href="#trabajos"  class="mobile-nav-link py-2.5 px-3 text-sm font-bold text-night hover:text-violet rounded-lg transition-colors duration-200 cursor-pointer" data-i18n="nav.trabajos">Trabajos</a>
-      <a href="#nosotros"  class="mobile-nav-link py-2.5 px-3 text-sm font-bold text-night hover:text-violet rounded-lg transition-colors duration-200 cursor-pointer" data-i18n="nav.nosotros">Nosotros</a>
-      <a href="#contacto"  class="mobile-nav-link py-2.5 px-3 text-sm font-bold text-night hover:text-violet rounded-lg transition-colors duration-200 cursor-pointer" data-i18n="nav.contacto">Contacto</a>
-      <!-- Lang — mobile -->
-      <div class="flex items-center gap-1 pt-3 pb-0.5 px-3" style="border-top:1px solid rgba(27,26,51,.06);margin-top:4px;">
-        <button class="lang-btn active" id="langBtnEsMobile" onclick="setLanguage('es')">ES</button>
-        <span class="text-night/20 text-xs select-none">|</span>
-        <button class="lang-btn" id="langBtnEnMobile" onclick="setLanguage('en')">EN</button>
-      </div>
-    </div>
-  </nav>
-</header>
-
-
-<!-- ═══════════════ HERO ═══════════════ -->
-<section class="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
-
-  <div class="absolute inset-0 pointer-events-none"
-       style="background:linear-gradient(112deg,#F4F2ED 35%,#EDE8F5 65%,#E7DFF4 100%);"></div>
-
-  <div class="absolute inset-y-0 right-0 w-[80%] pointer-events-none overflow-hidden"
-       style="-webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.30) 10%,black 25%);
-              mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.30) 10%,black 25%);">
-    <canvas id="neuralCanvas" style="width:100%;height:100%;display:block;"></canvas>
-  </div>
-
-  <div class="absolute bottom-0 left-0 right-0 h-52 pointer-events-none"
-       style="background:linear-gradient(to bottom,transparent 0%,rgba(237,232,245,0.72) 52%,#ede8f5 100%);"></div>
-
-  <div class="max-w-7xl mx-auto px-5 md:px-8 relative w-full">
-    <div class="max-w-[560px]">
-
-      <div class="hero-el flex items-center mb-7">
-        <span class="text-sm font-bold font-poppins tracking-[.18em] uppercase text-violet" data-i18n="hero.eyebrow">
-          Diseño web · Desarrollo · SEO
-        </span>
-      </div>
-
-      <h1 class="hero-el hero-el-d1 font-poppins font-extrabold text-[2.9rem] md:text-[3.9rem] lg:text-[5.1rem] leading-[1.08] tracking-[-0.03em] text-night mb-7">
-        <span data-i18n="hero.h1.line1">Hacemos</span>
-        <span style="background:linear-gradient(135deg,#5B4FC4,#E08A4E);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;" data-i18n="hero.h1.gradient"> visible</span><br>
-        <span data-i18n="hero.h1.line2">tu negocio</span>
-      </h1>
-
-      <p class="hero-el hero-el-d2 text-lg font-semibold text-night/85 leading-[1.72] mb-11 max-w-[480px]" data-i18n="hero.subtitle">
-        Más clientes, más reservas, más visibilidad para tu negocio. Tu nueva imagen digital, operativa y lista para recibir clientes en cuestión de días.
-      </p>
-
-      <div class="hero-el hero-el-d3 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-        <a href="#contacto"
-           class="hero-cta-primary text-white font-semibold font-poppins px-8 py-4 rounded-xl cursor-pointer active:scale-95"
-           style="background:#16151E;box-shadow:0 4px 16px rgba(0,0,0,.18),0 12px 32px rgba(0,0,0,.10);">
-          <span style="position:relative;z-index:1;" data-i18n="hero.cta">Empezar proyecto</span>
+<!-- ========= NAVBAR ========= -->
+<nav class="nav" id="nav">
+    <div class="container nav-inner">
+        <a href="#inicio" class="logo">
+            <span style="display:inline-block;width:52px;height:52px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#000;">
+                <img src="logo 2.0.jpeg" alt="Aurora Websites" style="display:block;width:52px;height:52px;transform:scale(1.32);transform-origin:center;object-fit:cover;">
+            </span>
+            <span class="logo-name">Aurora <span>Websites</span></span>
         </a>
-        <a href="#trabajos" class="flex items-center gap-2 text-night font-medium text-base hover:text-violet transition-colors duration-200 cursor-pointer group">
-          <span data-i18n="hero.demos">Ver demos</span>
-          <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-          </svg>
-        </a>
-      </div>
 
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════ SERVICIOS ═══════════════ -->
-<section id="servicios" class="py-28 relative" style="background:linear-gradient(to bottom,#ede8f5 0%,#f3f0fb 6%,#ffffff 20%);">
-  <div class="max-w-7xl mx-auto px-5 md:px-8">
-
-    <div class="text-center mb-16 reveal">
-      <h2 class="font-poppins font-bold text-4xl md:text-5xl text-night tracking-tight" data-i18n="pricing.heading">Elegí tu plan</h2>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
-
-      <!-- Plan 1 -->
-      <div class="reveal card-shadow bg-[#F9F8F5] rounded-2xl p-8 flex flex-col transition-shadow duration-300">
-        <div class="mb-6">
-          <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-5" style="background:rgba(91,79,196,.10);">
-            <svg class="w-5 h-5" fill="none" stroke="#5B4FC4" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-            </svg>
-          </div>
-          <h3 class="font-poppins font-bold text-xl text-night mb-2" data-i18n="pricing.card1.title">Landing Esencial</h3>
-          <p class="text-night font-semibold text-sm leading-relaxed" data-i18n="pricing.card1.desc">Presencia online básica y profesional para que tus clientes te encuentren.</p>
-        </div>
-        <ul class="space-y-3 mb-9 flex-1">
-          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
-            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#5B4FC4" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            <span data-i18n="pricing.card1.f1">Diseño personalizado para tu negocio</span>
-          </li>
-          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
-            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#5B4FC4" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            <span data-i18n="pricing.card1.f2">100% adaptado al celular</span>
-          </li>
-          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
-            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#5B4FC4" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            <span data-i18n="pricing.card1.f3">Formulario de contacto incluido</span>
-          </li>
-          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
-            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#5B4FC4" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            <span data-i18n="pricing.card1.f4">Lista para recibir clientes en pocos días</span>
-          </li>
+        <ul class="nav-links">
+            <li><a href="#servicios" data-i18n="nav.servicios">Servicios</a></li>
+            <li><a href="#proceso" data-i18n="nav.proceso">Proceso</a></li>
+            <li><a href="#trabajos" data-i18n="nav.trabajos">Trabajos</a></li>
+            <li><a href="#nosotros" data-i18n="nav.nosotros">Nosotros</a></li>
+            <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+            <li><a href="#contacto" data-i18n="nav.contacto">Contacto</a></li>
         </ul>
-        <a href="#contacto" class="block text-center border-2 border-violet text-violet font-semibold font-poppins text-sm py-3.5 rounded-xl hover:bg-violet hover:text-white transition-all duration-200 cursor-pointer" data-i18n="pricing.cta">Empezar</a>
-      </div>
 
-      <!-- Plan 2 — Popular -->
-      <div class="reveal reveal-d1 relative rounded-2xl p-8 flex flex-col popular-shadow"
-           style="background:linear-gradient(160deg,#F2F0FF 0%,#FDFCFB 100%);border:2px solid rgba(91,79,196,.24);">
-        <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-          <span class="grad-cta text-white text-xs font-bold font-poppins px-4 py-1.5 rounded-full tracking-wide whitespace-nowrap" data-i18n="pricing.popular">Más popular</span>
+        <div class="nav-cta-d">
+            <button class="lang-switch" id="langSwitch" aria-label="Cambiar idioma / Switch language">
+                <span class="lang-opt on" data-lang-opt="es">ES</span><span class="lang-opt" data-lang-opt="en">EN</span>
+            </button>
+            <a href="https://wa.me/TELEFONO?text=Hola%2C%20quiero%20info%20sobre%20mis%20opciones" class="btn btn-primary" target="_blank" data-i18n="nav.cta">Empezar proyecto</a>
         </div>
-        <div class="mb-6 mt-2">
-          <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-5" style="background:rgba(91,79,196,.12);">
-            <svg class="w-5 h-5" fill="none" stroke="#5B4FC4" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-            </svg>
-          </div>
-          <h3 class="font-poppins font-bold text-xl text-night mb-2" data-i18n="pricing.card2.title">Landing + Reservas</h3>
-          <p class="text-night font-semibold text-sm leading-relaxed" data-i18n="pricing.card2.desc">Todo lo anterior más un sistema de turnos para que tu agenda se llene sola.</p>
-        </div>
-        <ul class="space-y-3 mb-9 flex-1">
-          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
-            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#5B4FC4" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            <span data-i18n="pricing.card2.f1">Todo del plan Esencial</span>
-          </li>
-          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
-            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#5B4FC4" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            <span data-i18n="pricing.card2.f2">Sistema de reservas y turnos online</span>
-          </li>
-          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
-            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#5B4FC4" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            <span data-i18n="pricing.card2.f3">Galería de fotos de tu negocio</span>
-          </li>
-          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
-            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#5B4FC4" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            <span data-i18n="pricing.card2.f4">Google Maps integrado</span>
-          </li>
-        </ul>
-        <a href="#contacto" class="grad-cta block text-center text-white font-semibold font-poppins text-sm py-3.5 rounded-xl hover:opacity-90 transition-opacity duration-200 cursor-pointer" data-i18n="pricing.cta">Empezar</a>
-      </div>
 
-      <!-- Plan 3 — SEO -->
-      <div class="reveal reveal-d2 card-shadow bg-[#F9F8F5] rounded-2xl p-8 flex flex-col transition-shadow duration-300">
-        <div class="mb-6">
-          <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-5" style="background:rgba(224,138,78,.10);">
-            <svg class="w-5 h-5" fill="none" stroke="#E08A4E" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-            </svg>
-          </div>
-          <h3 class="font-poppins font-bold text-xl text-night mb-2" data-i18n="pricing.card3.title">Sitio completo + SEO</h3>
-          <p class="text-night font-semibold text-sm leading-relaxed" data-i18n="pricing.card3.desc">Tu negocio aparece en Google cuando alguien busca lo que ofrecés.</p>
-        </div>
-        <ul class="space-y-3 mb-9 flex-1">
-          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
-            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#E08A4E" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            <span data-i18n="pricing.card3.f1">Todo del plan Landing + Reservas</span>
-          </li>
-          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
-            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#E08A4E" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            <span data-i18n="pricing.card3.f2">Optimización para aparecer en Google</span>
-          </li>
-          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
-            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#E08A4E" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            <span data-i18n="pricing.card3.f3">Optimización SEO local avanzada</span>
-          </li>
-          <li class="flex items-start gap-2.5 text-sm text-night font-semibold">
-            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="none" stroke="#E08A4E" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-            <span data-i18n="pricing.card3.f4">Reportes mensuales de visitas</span>
-          </li>
-        </ul>
-        <a href="#contacto" class="block text-center border-2 border-gold text-gold font-semibold font-poppins text-sm py-3.5 rounded-xl hover:bg-gold hover:text-white transition-all duration-200 cursor-pointer" data-i18n="pricing.cta">Empezar</a>
-      </div>
-
+        <button class="burger" id="burger" aria-label="Menú">
+            <span></span><span></span><span></span>
+        </button>
     </div>
-  </div>
-</section>
+</nav>
 
+<!-- Mobile menu -->
+<div class="mob-menu" id="mobMenu">
+    <a href="#servicios"  class="ml" data-i18n="nav.servicios">Servicios</a>
+    <a href="#proceso"    class="ml" data-i18n="nav.proceso">Proceso</a>
+    <a href="#trabajos"  class="ml" data-i18n="nav.trabajos">Trabajos</a>
+    <a href="#nosotros"  class="ml" data-i18n="nav.nosotros">Nosotros</a>
+    <a href="#faq"       class="ml" data-i18n="nav.faq">FAQ</a>
+    <a href="#contacto"  class="ml" data-i18n="nav.contacto">Contacto</a>
+    <button class="lang-switch lang-switch-mob" id="langSwitchMob" aria-label="Cambiar idioma / Switch language">
+        <span class="lang-opt on" data-lang-opt="es">ES</span><span class="lang-opt" data-lang-opt="en">EN</span>
+    </button>
+    <a href="https://wa.me/TELEFONO" class="btn btn-primary btn-lg mob-cta" target="_blank" data-i18n="nav.cta">Empezar proyecto</a>
+</div>
 
-<!-- ═══════════════ NOSOTROS ═══════════════ -->
-<section id="nosotros" class="py-28 relative overflow-hidden" style="background:linear-gradient(to bottom,#ffffff 0%,#F4F2ED 13%,#F4F2ED 87%,#ffffff 100%);">
-
-  <div class="orb" aria-hidden="true" style="width:480px;height:480px;top:-60px;right:-80px;background:radial-gradient(circle,rgba(91,79,196,.07) 0%,transparent 70%);"></div>
-  <div class="orb" aria-hidden="true" style="width:400px;height:400px;bottom:-60px;left:-80px;background:radial-gradient(circle,rgba(224,138,78,.07) 0%,transparent 70%);"></div>
-
-  <div class="max-w-7xl mx-auto px-5 md:px-8 relative">
-
-    <div class="text-center mb-16 reveal">
-      <h2 class="font-poppins font-bold text-4xl md:text-5xl text-night tracking-tight" data-i18n="nosotros.heading">Tu negocio merece más</h2>
+<!-- ========= HERO ========= -->
+<section class="hero" id="inicio">
+    <div class="hero-vid">
+        <canvas id="auroraCanvas"></canvas>
     </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-fade-bottom"></div>
 
-    <div class="grid md:grid-cols-3 gap-10 lg:gap-16">
+    <div class="hero-content">
+        <div class="hero-label hero-fog-in d0" id="hl" data-i18n="hero.label">Diseño web que genera resultados</div>
 
-      <div class="reveal">
-        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(91,79,196,.10);">
-          <svg class="w-6 h-6" fill="none" stroke="#5B4FC4" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-          </svg>
+        <h1 class="hero-h1" id="hh" data-i18n="hero.title">
+            <span class="fog-word w1">Webs</span> <span class="fog-word w2">que</span> <span class="fog-word w3">convierten</span><br>
+            <span class="fog-word w4"><span class="hero-shine">visitantes</span></span><br>
+            <span class="fog-word w5">en</span> <span class="fog-word w6">clientes</span>
+        </h1>
+
+        <p class="hero-sub hero-fog-in d1" id="hs" data-i18n="hero.sub">
+            Diseñamos páginas web modernas, rápidas y optimizadas para que tu negocio genere confianza desde el primer segundo.
+        </p>
+
+        <div class="hero-ctas hero-fog-in d2" id="hc">
+            <a href="#contacto" class="btn btn-primary btn-lg" data-i18n="hero.cta1">Solicitar presupuesto</a>
+            <a href="#trabajos" class="btn btn-ghost btn-lg" data-i18n="hero.cta2">Ver trabajos &rarr;</a>
         </div>
-        <h3 class="font-poppins font-bold text-xl text-night mb-3" data-i18n="nosotros.card1.title">Más clientes te encuentran</h3>
-        <p class="text-night font-semibold text-sm leading-[1.75]" data-i18n="nosotros.card1.desc">Tu negocio aparece cuando alguien busca dónde comer, dónde cortarse el pelo, o qué hacer cerca. Tu web trabaja para vos las 24 horas.</p>
-      </div>
 
-      <div class="reveal reveal-d1">
-        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(91,79,196,.10);">
-          <svg class="w-6 h-6" fill="none" stroke="#5B4FC4" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-          </svg>
-        </div>
-        <h3 class="font-poppins font-bold text-xl text-night mb-3" data-i18n="nosotros.card2.title">Tu negocio, mejor representado</h3>
-        <p class="text-night font-semibold text-sm leading-[1.75]" data-i18n="nosotros.card2.desc">Las fotos, el menú, los horarios — todo en un solo lugar, fácil de ver desde el celular. La primera impresión que merece tu negocio.</p>
-      </div>
-
-      <div class="reveal reveal-d2">
-        <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(224,138,78,.10);">
-          <svg class="w-6 h-6" fill="none" stroke="#E08A4E" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-          </svg>
-        </div>
-        <h3 class="font-poppins font-bold text-xl text-night mb-3" data-i18n="nosotros.card3.title">Reservas sin fricción</h3>
-        <p class="text-night font-semibold text-sm leading-[1.75]" data-i18n="nosotros.card3.desc">Que la gente pueda reservar o consultar sin tener que llamarte. Menos llamadas perdidas, más turnos confirmados.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- ═══════════════ TRABAJOS ═══════════════ -->
-<section id="trabajos" class="py-28" style="background:linear-gradient(to bottom,#ffffff 0%,#ffffff 82%,#F4F2ED 100%);">
-  <div class="max-w-7xl mx-auto px-5 md:px-8">
-
-    <div class="text-center mb-16 reveal">
-      <h2 class="font-poppins font-bold text-4xl md:text-5xl text-night tracking-tight" data-i18n="trabajos.heading">Proyectos recientes</h2>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6">
-
-      <div class="reveal card-shadow bg-[#F9F8F5] rounded-2xl overflow-hidden transition-shadow duration-300 cursor-pointer group">
-        <div class="relative h-52 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(91,79,196,.13) 0%,rgba(224,138,78,.09) 100%);">
-          <div class="text-center">
-            <div class="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center" style="background:rgba(91,79,196,.15);">
-              <svg class="w-6 h-6" fill="none" stroke="#5B4FC4" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div class="hero-stats hero-fog-in d3" id="hst">
+            <div class="hero-stat">
+                <span class="hero-stat-ico">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                </span>
+                <span class="hero-stat-txt" data-i18n="hero.stat1">Respuesta en menos<br>de <b>24 hs</b></span>
             </div>
-            <span class="font-poppins font-semibold text-xs text-night/65 tracking-[.15em] uppercase" data-i18n="trabajos.soon">Próximamente</span>
-          </div>
-        </div>
-        <div class="p-5">
-          <h3 class="font-poppins font-semibold text-night text-base mb-1" data-i18n="trabajos.card1.title">La Cantina de Marco</h3>
-          <span class="text-xs text-night/70 font-medium tracking-wide uppercase" data-i18n="trabajos.card1.label">Restaurante · Buenos Aires</span>
-        </div>
-      </div>
-
-      <div class="reveal reveal-d1 card-shadow bg-[#F9F8F5] rounded-2xl overflow-hidden transition-shadow duration-300 cursor-pointer group">
-        <div class="relative h-52 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(224,138,78,.11) 0%,rgba(91,79,196,.09) 100%);">
-          <div class="text-center">
-            <div class="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center" style="background:rgba(224,138,78,.15);">
-              <svg class="w-6 h-6" fill="none" stroke="#E08A4E" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div class="hero-stat">
+                <span class="hero-stat-ico">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span class="hero-stat-txt" data-i18n="hero.stat2">Entrega desde<br><b>5 días</b></span>
             </div>
-            <span class="font-poppins font-semibold text-xs text-night/65 tracking-[.15em] uppercase" data-i18n="trabajos.soon">Próximamente</span>
-          </div>
-        </div>
-        <div class="p-5">
-          <h3 class="font-poppins font-semibold text-night text-base mb-1" data-i18n="trabajos.card2.title">Studio Noir</h3>
-          <span class="text-xs text-night/70 font-medium tracking-wide uppercase" data-i18n="trabajos.card2.label">Salón de estética · Córdoba</span>
-        </div>
-      </div>
-
-      <div class="reveal reveal-d2 card-shadow bg-[#F9F8F5] rounded-2xl overflow-hidden transition-shadow duration-300 cursor-pointer group">
-        <div class="relative h-52 flex items-center justify-center" style="background:linear-gradient(135deg,rgba(91,79,196,.09) 0%,rgba(224,138,78,.13) 100%);">
-          <div class="text-center">
-            <div class="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center" style="background:rgba(91,79,196,.12);">
-              <svg class="w-6 h-6" fill="none" stroke="#5B4FC4" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <div class="hero-stat">
+                <span class="hero-stat-ico">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 8.5 22 9.5 17 14.5 18 21.5 12 18 6 21.5 7 14.5 2 9.5 9 8.5 12 2"/></svg>
+                </span>
+                <span class="hero-stat-txt" data-i18n="hero.stat3"><span class="hero-stars">★★★★★</span><br>+25 negocios nos eligen</span>
             </div>
-            <span class="font-poppins font-semibold text-xs text-night/65 tracking-[.15em] uppercase" data-i18n="trabajos.soon">Próximamente</span>
-          </div>
         </div>
-        <div class="p-5">
-          <h3 class="font-poppins font-semibold text-night text-base mb-1" data-i18n="trabajos.card3.title">Café Amarillo</h3>
-          <span class="text-xs text-night/70 font-medium tracking-wide uppercase" data-i18n="trabajos.card3.label">Cafetería · Rosario</span>
-        </div>
-      </div>
-
     </div>
-  </div>
+
+
 </section>
 
-
-<!-- ═══════════════ CONTACTO ═══════════════ -->
-<section id="contacto" class="py-28" style="background:#F4F2ED;">
-  <div class="max-w-xl mx-auto px-5 md:px-8">
-
-    <div class="text-center mb-12 reveal">
-      <h2 class="font-poppins font-bold text-4xl md:text-5xl text-night tracking-tight mb-4" data-i18n-html="contacto.heading">¿Listo para<br>empezar?</h2>
-      <p class="text-night font-semibold leading-relaxed text-base" data-i18n="contacto.subtitle">
-        Contanos sobre tu negocio y te respondemos en el día con una propuesta a medida.
-      </p>
-    </div>
-
-    <div class="reveal reveal-d1 text-center mb-10">
-      <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20una%20web%20para%20mi%20negocio"
-         target="_blank" rel="noopener noreferrer"
-         class="btn-wa inline-flex items-center gap-3 text-white font-semibold font-poppins px-8 py-4 rounded-2xl cursor-pointer text-base">
-        <svg class="w-6 h-6 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-        <span data-i18n="contacto.wa">Escribinos por WhatsApp</span>
-      </a>
-    </div>
-
-    <div class="reveal reveal-d1 flex items-center gap-4 mb-10">
-      <div class="h-px flex-1" style="background:rgba(27,26,51,.10);"></div>
-      <span class="text-sm text-night font-bold whitespace-nowrap" data-i18n="contacto.divider">o completá el formulario</span>
-      <div class="h-px flex-1" style="background:rgba(27,26,51,.10);"></div>
-    </div>
-
-    <form class="reveal reveal-d2 space-y-4" onsubmit="handleSubmit(event)" novalidate>
-
-      <div>
-        <label for="nombre" class="block text-sm font-bold text-night mb-1.5" data-i18n="contacto.nombre.label">Nombre</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required class="field"
-               data-i18n-placeholder="contacto.nombre.placeholder">
-      </div>
-
-      <div>
-        <label for="negocio" class="block text-sm font-bold text-night mb-1.5" data-i18n="contacto.negocio.label">Tipo de negocio</label>
-        <div class="relative">
-          <select id="negocio" name="negocio" required class="field cursor-pointer pr-10">
-            <option value="" disabled selected data-i18n="contacto.negocio.placeholder">Seleccioná una opción</option>
-            <option value="restaurante" data-i18n="contacto.negocio.o1">Restaurante / Bar</option>
-            <option value="salon"       data-i18n="contacto.negocio.o2">Salón de estética / Peluquería</option>
-            <option value="cafe"        data-i18n="contacto.negocio.o3">Café / Confitería</option>
-            <option value="comercio"    data-i18n="contacto.negocio.o4">Comercio local</option>
-            <option value="servicio"    data-i18n="contacto.negocio.o5">Servicio profesional</option>
-            <option value="otro"        data-i18n="contacto.negocio.o6">Otro</option>
-          </select>
-          <svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-night/65 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-          </svg>
+<!-- ========= PLANES ========= -->
+<section class="section" id="servicios">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title rv d1" data-i18n="plans.title">Elegí tu plan</h2>
+            <p class="section-sub rv d2" data-i18n="plans.sub">Soluciones a medida para negocios que quieren crecer online, sin complicaciones ni contratos eternos.</p>
         </div>
-      </div>
 
-      <div>
-        <label for="mensaje" class="block text-sm font-bold text-night mb-1.5" data-i18n="contacto.mensaje.label">Contanos sobre tu proyecto</label>
-        <textarea id="mensaje" name="mensaje" rows="4" placeholder="¿Qué necesita tu negocio? ¿Ya tenés web?"
-                  required class="field resize-none" data-i18n-placeholder="contacto.mensaje.placeholder"></textarea>
-      </div>
+        <div class="plans-grid">
+            <!-- Esencial -->
+            <div class="plan rv">
+                <div class="plan-ico">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                </div>
+                <div class="plan-name" data-i18n="plans.p1.name">Landing Esencial</div>
+                <p class="plan-desc" data-i18n="plans.p1.desc">Presencia online básica y profesional para que tus clientes te encuentren.</p>
+                <ul class="plan-list">
+                    <li><svg class="chk" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="plans.p1.li1">Diseño personalizado para tu negocio</span></li>
+                    <li><svg class="chk" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="plans.p1.li2">100% adaptado al celular</span></li>
+                    <li><svg class="chk" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="plans.p1.li3">Formulario de contacto incluido</span></li>
+                    <li><svg class="chk" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="plans.p1.li4">Lista para recibir clientes en días</span></li>
+                </ul>
+                <a href="#contacto" class="btn btn-ghost plan-btn" data-i18n="plans.btn">Empezar</a>
+            </div>
 
-      <button type="submit"
-              class="w-full grad-cta text-white font-semibold font-poppins py-4 rounded-xl cursor-pointer transition-all duration-200 active:scale-95 text-base"
-              style="box-shadow:0 4px 16px rgba(91,79,196,.20),0 10px 28px rgba(91,79,196,.10);"
-              data-i18n="contacto.submit">
-        Enviar mensaje
-      </button>
+            <!-- Featured -->
+            <div class="plan hot rv d1">
+                <div class="plan-tag" data-i18n="plans.tag">Más popular</div>
+                <div class="plan-ico">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                </div>
+                <div class="plan-name" data-i18n="plans.p2.name">Landing + Reservas</div>
+                <p class="plan-desc" data-i18n="plans.p2.desc">Todo lo anterior más un sistema de turnos para que tu agenda se llene sola.</p>
+                <ul class="plan-list">
+                    <li><svg class="chk" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="plans.p2.li1">Todo el plan Esencial</span></li>
+                    <li><svg class="chk" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="plans.p2.li2">Sistema de reservas y turnos online</span></li>
+                    <li><svg class="chk" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="plans.p2.li3">Galería de fotos de tu negocio</span></li>
+                    <li><svg class="chk" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="plans.p2.li4">Google Maps integrado</span></li>
+                </ul>
+                <a href="#contacto" class="btn btn-primary plan-btn" data-i18n="plans.btn">Empezar</a>
+            </div>
 
-    </form>
-  </div>
+            <!-- SEO -->
+            <div class="plan rv d2">
+                <div class="plan-ico">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </div>
+                <div class="plan-name" data-i18n="plans.p3.name">Sitio completo + SEO</div>
+                <p class="plan-desc" data-i18n="plans.p3.desc">Tu negocio aparece en Google cuando alguien busca lo que ofrecés.</p>
+                <ul class="plan-list">
+                    <li><svg class="chk" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="plans.p3.li1">Todo el plan Landing + Reservas</span></li>
+                    <li><svg class="chk" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="plans.p3.li2">Optimización para aparecer en Google</span></li>
+                    <li><svg class="chk" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="plans.p3.li3">SEO local avanzado</span></li>
+                    <li><svg class="chk" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="plans.p3.li4">Reportes mensuales de visitas</span></li>
+                </ul>
+                <a href="#contacto" class="btn btn-ghost plan-btn" data-i18n="plans.btn">Empezar</a>
+            </div>
+        </div>
+    </div>
 </section>
 
-
-<!-- ═══════════════ FOOTER ═══════════════ -->
-<footer style="background:#1B1A33;" class="pt-14 pb-8">
-  <div class="max-w-7xl mx-auto px-5 md:px-8">
-
-    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 pb-10"
-         style="border-bottom:1px solid rgba(255,255,255,.08);">
-      <div>
-        <div class="flex items-center gap-2.5 mb-2.5">
-          <img src="brand assets/aurora website logo.png" alt="Aurora Websites logo" class="h-8 w-8 object-contain" width="32" height="32" loading="lazy">
-          <span class="font-poppins font-bold text-white text-lg tracking-tight">Aurora <span style="color:#9B8FE0;">Websites</span></span>
+<!-- ========= WHY ========= -->
+<section class="section why-wrap" id="nosotros">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title rv d1" data-i18n="why.title">Tu negocio merece más</h2>
         </div>
-        <p class="text-white/65 text-sm mb-1" data-i18n="footer.tagline">Hacemos visible tu negocio</p>
-        <p class="text-white/55 text-xs" data-i18n="footer.location">Flåm, Noruega</p>
-      </div>
-      <nav class="flex flex-wrap gap-x-8 gap-y-2" aria-label="Footer">
-        <a href="#servicios" class="text-white/70 text-sm hover:text-white transition-colors duration-200 cursor-pointer" data-i18n="nav.servicios">Servicios</a>
-        <a href="#trabajos"  class="text-white/70 text-sm hover:text-white transition-colors duration-200 cursor-pointer" data-i18n="nav.trabajos">Trabajos</a>
-        <a href="#nosotros"  class="text-white/70 text-sm hover:text-white transition-colors duration-200 cursor-pointer" data-i18n="nav.nosotros">Nosotros</a>
-        <a href="#contacto"  class="text-white/70 text-sm hover:text-white transition-colors duration-200 cursor-pointer" data-i18n="nav.contacto">Contacto</a>
-      </nav>
+        <div class="ben-grid">
+            <div class="ben rv">
+                <div class="ben-n">🎯</div>
+                <h3 class="ben-title" data-i18n="why.b1.title">Más clientes te encuentran</h3>
+                <p class="ben-text" data-i18n="why.b1.text">Tu negocio aparece cuando alguien busca dónde comer, dónde cortarse el pelo, qué hacer cerca. Tu web trabaja para vos las 24 horas.</p>
+            </div>
+            <div class="ben rv d1">
+                <div class="ben-n">✨</div>
+                <h3 class="ben-title" data-i18n="why.b2.title">Tu negocio, mejor representado</h3>
+                <p class="ben-text" data-i18n="why.b2.text">Las fotos, el menú, los horarios — todo en un solo lugar, fácil de ver desde el celular. La primera impresión que merece tu negocio.</p>
+            </div>
+            <div class="ben rv d2">
+                <div class="ben-n">⚡</div>
+                <h3 class="ben-title" data-i18n="why.b3.title">Reservas sin fricción</h3>
+                <p class="ben-text" data-i18n="why.b3.text">Que la gente pueda reservar o consultar sin tener que llamarte. Menos llamadas perdidas, más turnos confirmados.</p>
+            </div>
+        </div>
     </div>
+</section>
 
-    <p class="text-center text-white/50 text-xs mt-8" data-i18n="footer.copyright">&copy; 2026 Aurora Websites. Todos los derechos reservados.</p>
+<!-- ========= PROCESO ========= -->
+<section class="section" id="proceso">
+    <div class="container">
+        <div class="section-header" style="text-align:center">
+            <h2 class="section-title rv d1" data-i18n="process.title">Simple, rápido y transparente</h2>
+            <p class="section-sub rv d2" style="margin:14px auto 0" data-i18n="process.sub">Del primer mensaje a tu web online en cuestión de días, sin vueltas.</p>
+        </div>
+        <div class="proc-grid">
+            <div class="proc-step rv">
+                <div class="proc-ico">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <span class="proc-num">1</span>
+                </div>
+                <h3 class="proc-title" data-i18n="process.s1.title">Nos contás tu negocio</h3>
+                <p class="proc-text" data-i18n="process.s1.text">Hablamos por WhatsApp o completás el formulario. Te hacemos las preguntas clave para entenderte.</p>
+            </div>
+            <div class="proc-step rv d1">
+                <div class="proc-ico">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                    <span class="proc-num">2</span>
+                </div>
+                <h3 class="proc-title" data-i18n="process.s2.title">Diseñamos tu propuesta</h3>
+                <p class="proc-text" data-i18n="process.s2.text">En 24–48 hs tenés un diseño personalizado para aprobar o pedir ajustes.</p>
+            </div>
+            <div class="proc-step rv d2">
+                <div class="proc-ico">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    <span class="proc-num">3</span>
+                </div>
+                <h3 class="proc-title" data-i18n="process.s3.title">Desarrollamos y ajustamos</h3>
+                <p class="proc-text" data-i18n="process.s3.text">Construimos tu web con tus correcciones incluidas hasta que quede perfecta.</p>
+            </div>
+            <div class="proc-step rv d3">
+                <div class="proc-ico">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span class="proc-num">4</span>
+                </div>
+                <h3 class="proc-title" data-i18n="process.s4.title">Lanzamos tu web</h3>
+                <p class="proc-text" data-i18n="process.s4.text">Publicamos, configuramos todo y te entregamos listo para empezar a recibir clientes.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
-  </div>
+<!-- ========= PORTFOLIO ========= -->
+<section class="section" id="trabajos">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title rv d1" data-i18n="portfolio.title">Proyectos recientes</h2>
+            <p class="section-sub rv d2" data-i18n="portfolio.sub">Cada negocio tiene su propia historia. Aquí algunas de las webs que construimos.</p>
+        </div>
+        <div class="port-grid">
+            <div class="port-card rv">
+                <div class="port-thumb"><span class="port-thumb-label" data-i18n="portfolio.soon">Próximamente</span></div>
+                <div class="port-info">
+                    <div class="port-name">La Cantina de Marco</div>
+                    <div class="port-type" data-i18n="portfolio.p1.type">Restaurante &middot; Buenos Aires</div>
+                </div>
+            </div>
+            <div class="port-card rv d1">
+                <div class="port-thumb"><span class="port-thumb-label" data-i18n="portfolio.soon">Próximamente</span></div>
+                <div class="port-info">
+                    <div class="port-name">Studio Noir</div>
+                    <div class="port-type" data-i18n="portfolio.p2.type">Salón de estética &middot; Córdoba</div>
+                </div>
+            </div>
+            <div class="port-card rv d2">
+                <div class="port-thumb"><span class="port-thumb-label" data-i18n="portfolio.soon">Próximamente</span></div>
+                <div class="port-info">
+                    <div class="port-name">Café Amarillo</div>
+                    <div class="port-type" data-i18n="portfolio.p3.type">Cafetería &middot; Rosario</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========= FAQ ========= -->
+<section class="section" id="faq">
+    <div class="container">
+        <div class="section-header" style="text-align:center">
+            <h2 class="section-title rv d1" data-i18n="faq.title">Resolvemos tus dudas</h2>
+            <p class="section-sub rv d2" style="margin:14px auto 0" data-i18n="faq.sub">Si tenés otra pregunta, escribinos por WhatsApp y te respondemos al toque.</p>
+        </div>
+
+        <div class="faq-wrap">
+            <div class="faq-item rv">
+                <div class="faq-q">
+                    <span data-i18n="faq.q1.q">¿Cuánto tiempo tarda en estar lista mi web?</span>
+                    <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                </div>
+                <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.q1.a">Depende del plan, pero en general entre 3 y 7 días desde que nos pasás todo el contenido de tu negocio. Te vamos mostrando avances en el camino.</div></div>
+            </div>
+
+            <div class="faq-item rv d1">
+                <div class="faq-q">
+                    <span data-i18n="faq.q2.q">¿Necesito tener mi propio dominio y hosting?</span>
+                    <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                </div>
+                <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.q2.a">No es necesario. Si ya tenés uno lo usamos, y si no, te ayudamos a conseguirlo y dejamos todo configurado y funcionando.</div></div>
+            </div>
+
+            <div class="faq-item rv d2">
+                <div class="faq-q">
+                    <span data-i18n="faq.q3.q">¿Puedo pedir cambios después de que la web esté lista?</span>
+                    <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                </div>
+                <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.q3.a">Sí. Antes de la entrega incluimos rondas de ajustes sin costo, y después también podés pedirnos cambios puntuales cuando lo necesites.</div></div>
+            </div>
+
+            <div class="faq-item rv d3">
+                <div class="faq-q">
+                    <span data-i18n="faq.q4.q">¿Qué pasa si no tengo fotos o contenido de mi negocio?</span>
+                    <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                </div>
+                <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.q4.a">No hay problema, te ayudamos a redactar los textos y usamos imágenes de stock de calidad hasta que tengas tus propias fotos.</div></div>
+            </div>
+
+            <div class="faq-item rv d4">
+                <div class="faq-q">
+                    <span data-i18n="faq.q5.q">¿Ofrecen mantenimiento mensual?</span>
+                    <span class="faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+                </div>
+                <div class="faq-a"><div class="faq-a-inner" data-i18n="faq.q5.a">Sí, tenemos un plan opcional de mantenimiento para cambios, actualizaciones y soporte continuo. Te contamos los detalles cuando hablemos por WhatsApp.</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========= CTA / CONTACTO ========= -->
+<section class="section cta-section" id="contacto">
+    <div class="cta-glow"></div>
+    <div class="container cta-inner">
+        <div class="cta-line rv"></div>
+        <h2 class="cta-h rv d1" data-i18n="cta.h">¿Listo para<br><span class="grad-text">empezar?</span></h2>
+        <p class="cta-sub rv d2" data-i18n="cta.sub">Contanos sobre tu negocio y te respondemos en el día con una propuesta a medida.</p>
+
+        <div class="rv d3">
+            <a href="https://wa.me/TELEFONO?text=Hola%2C%20quiero%20info%20sobre%20una%20web%20para%20mi%20negocio" class="btn btn-wa btn-lg" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                <span data-i18n="cta.wa">Escribinos por WhatsApp</span>
+            </a>
+        </div>
+
+        <div class="or-row rv d4" data-i18n="cta.or">o completá el formulario</div>
+
+        <form class="form-wrap rv d4" id="contactForm">
+            <div class="fg">
+                <label for="nombre" data-i18n="form.name.label">Nombre</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" data-i18n-placeholder="form.name.ph" required>
+            </div>
+            <div class="fg">
+                <label for="tipo" data-i18n="form.type.label">Tipo de negocio</label>
+                <select id="tipo" name="tipo">
+                    <option value="" disabled selected data-i18n="form.type.ph">Seleccioná una opción</option>
+                    <option data-i18n="form.type.o1">Restaurante / Café</option>
+                    <option data-i18n="form.type.o2">Estética / Salón de belleza</option>
+                    <option data-i18n="form.type.o3">Salud / Clínica</option>
+                    <option data-i18n="form.type.o4">Fitness / Deporte</option>
+                    <option data-i18n="form.type.o5">Comercio / Tienda</option>
+                    <option data-i18n="form.type.o6">Servicios profesionales</option>
+                    <option data-i18n="form.type.o7">Otro</option>
+                </select>
+            </div>
+            <div class="fg">
+                <label for="msg" data-i18n="form.msg.label">Contanos sobre tu proyecto</label>
+                <textarea id="msg" name="msg" placeholder="¿Qué necesita tu negocio? ¿Ya tenés web?" data-i18n-placeholder="form.msg.ph" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit" data-i18n="form.submit">Enviar mensaje</button>
+        </form>
+    </div>
+</section>
+
+<!-- ========= FOOTER ========= -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <a href="#inicio" class="logo" style="margin-bottom:10px">
+                    <span style="display:inline-block;width:60px;height:60px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#000;">
+                        <img src="logo 2.0.jpeg" alt="Aurora Websites" style="display:block;width:60px;height:60px;transform:scale(1.32);transform-origin:center;object-fit:cover;">
+                    </span>
+                    <span class="logo-name">Aurora <span>Websites</span></span>
+                </a>
+                <p class="footer-brand-tag" data-i18n="footer.tag">Hacemos visible tu negocio. Diseño web, desarrollo y SEO para negocios locales.</p>
+            </div>
+
+            <div>
+                <div class="foot-col-t" data-i18n="footer.col.services">Servicios</div>
+                <ul class="foot-links">
+                    <li><a href="#servicios" data-i18n="plans.p1.name">Landing Esencial</a></li>
+                    <li><a href="#servicios" data-i18n="plans.p2.name">Landing + Reservas</a></li>
+                    <li><a href="#servicios" data-i18n="plans.p3.name">Sitio completo + SEO</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <div class="foot-col-t" data-i18n="footer.col.company">Empresa</div>
+                <ul class="foot-links">
+                    <li><a href="#nosotros" data-i18n="nav.nosotros">Nosotros</a></li>
+                    <li><a href="#trabajos" data-i18n="nav.trabajos">Trabajos</a></li>
+                    <li><a href="#proceso" data-i18n="nav.proceso">Proceso</a></li>
+                    <li><a href="#contacto" data-i18n="nav.contacto">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <div class="foot-col-t" data-i18n="footer.col.contact">Contacto</div>
+                <ul class="foot-links">
+                    <li><a href="https://wa.me/TELEFONO" target="_blank">WhatsApp</a></li>
+                    <li><a href="mailto:info@aurorawebsites.com">info@aurorawebsites.com</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="foot-bottom">
+            <span data-i18n="footer.copyright">&copy; 2026 Aurora Websites. Todos los derechos reservados.</span>
+            <span data-i18n="footer.madewith">Hecho con &#9825; en Argentina</span>
+        </div>
+    </div>
 </footer>
 
-
-<!-- ═══════════════ SCRIPTS ═══════════════ -->
-<script>
-  /* ── Translations ── */
-  const T = {
-    es: {
-      'nav.servicios':'Servicios','nav.trabajos':'Trabajos','nav.nosotros':'Nosotros','nav.contacto':'Contacto','nav.cta':'Empezar proyecto',
-      'hero.eyebrow':'Diseño web · Desarrollo · SEO',
-      'hero.h1.line1':'Hacemos','hero.h1.gradient':' visible','hero.h1.line2':'tu negocio',
-      'hero.subtitle':'Más clientes, más reservas, más visibilidad para tu negocio. Tu nueva imagen digital, operativa y lista para recibir clientes en cuestión de días.',
-      'hero.cta':'Empezar proyecto','hero.demos':'Ver demos',
-      'pricing.heading':'Elegí tu plan','pricing.popular':'Más popular','pricing.cta':'Empezar',
-      'pricing.card1.title':'Landing Esencial','pricing.card1.desc':'Presencia online básica y profesional para que tus clientes te encuentren.',
-      'pricing.card1.f1':'Diseño personalizado para tu negocio','pricing.card1.f2':'100% adaptado al celular',
-      'pricing.card1.f3':'Formulario de contacto incluido','pricing.card1.f4':'Lista para recibir clientes en pocos días',
-      'pricing.card2.title':'Landing + Reservas','pricing.card2.desc':'Todo lo anterior más un sistema de turnos para que tu agenda se llene sola.',
-      'pricing.card2.f1':'Todo del plan Esencial','pricing.card2.f2':'Sistema de reservas y turnos online',
-      'pricing.card2.f3':'Galería de fotos de tu negocio','pricing.card2.f4':'Google Maps integrado',
-      'pricing.card3.title':'Sitio completo + SEO','pricing.card3.desc':'Tu negocio aparece en Google cuando alguien busca lo que ofrecés.',
-      'pricing.card3.f1':'Todo del plan Landing + Reservas','pricing.card3.f2':'Optimización para aparecer en Google',
-      'pricing.card3.f3':'Optimización SEO local avanzada','pricing.card3.f4':'Reportes mensuales de visitas',
-      'nosotros.heading':'Tu negocio merece más',
-      'nosotros.card1.title':'Más clientes te encuentran','nosotros.card1.desc':'Tu negocio aparece cuando alguien busca dónde comer, dónde cortarse el pelo, o qué hacer cerca. Tu web trabaja para vos las 24 horas.',
-      'nosotros.card2.title':'Tu negocio, mejor representado','nosotros.card2.desc':'Las fotos, el menú, los horarios — todo en un solo lugar, fácil de ver desde el celular. La primera impresión que merece tu negocio.',
-      'nosotros.card3.title':'Reservas sin fricción','nosotros.card3.desc':'Que la gente pueda reservar o consultar sin tener que llamarte. Menos llamadas perdidas, más turnos confirmados.',
-      'trabajos.heading':'Proyectos recientes','trabajos.soon':'Próximamente',
-      'trabajos.card1.title':'La Cantina de Marco','trabajos.card1.label':'Restaurante · Buenos Aires',
-      'trabajos.card2.title':'Studio Noir','trabajos.card2.label':'Salón de estética · Córdoba',
-      'trabajos.card3.title':'Café Amarillo','trabajos.card3.label':'Cafetería · Rosario',
-      'contacto.heading':'¿Listo para<br>empezar?',
-      'contacto.subtitle':'Contanos sobre tu negocio y te respondemos en el día con una propuesta a medida.',
-      'contacto.wa':'Escribinos por WhatsApp','contacto.divider':'o completá el formulario',
-      'contacto.nombre.label':'Nombre','contacto.nombre.placeholder':'Tu nombre',
-      'contacto.negocio.label':'Tipo de negocio','contacto.negocio.placeholder':'Seleccioná una opción',
-      'contacto.negocio.o1':'Restaurante / Bar','contacto.negocio.o2':'Salón de estética / Peluquería',
-      'contacto.negocio.o3':'Café / Confitería','contacto.negocio.o4':'Comercio local',
-      'contacto.negocio.o5':'Servicio profesional','contacto.negocio.o6':'Otro',
-      'contacto.mensaje.label':'Contanos sobre tu proyecto','contacto.mensaje.placeholder':'¿Qué necesita tu negocio? ¿Ya tenés web?',
-      'contacto.submit':'Enviar mensaje',
-      'footer.tagline':'Hacemos visible tu negocio','footer.location':'Flåm, Noruega',
-      'footer.copyright':'© 2026 Aurora Websites. Todos los derechos reservados.',
-    },
-    en: {
-      'nav.servicios':'Services','nav.trabajos':'Work','nav.nosotros':'About','nav.contacto':'Contact','nav.cta':'Start project',
-      'hero.eyebrow':'Web design · Development · SEO',
-      'hero.h1.line1':'We make','hero.h1.gradient':' visible','hero.h1.line2':'your business',
-      'hero.subtitle':'More clients, more bookings, more visibility for your business. Your new digital presence, ready to receive clients in a matter of days.',
-      'hero.cta':'Start project','hero.demos':'View demos',
-      'pricing.heading':'Choose your plan','pricing.popular':'Most popular','pricing.cta':'Get started',
-      'pricing.card1.title':'Essential Landing','pricing.card1.desc':'Basic and professional online presence so your clients can find you.',
-      'pricing.card1.f1':'Custom design for your business','pricing.card1.f2':'100% mobile-friendly',
-      'pricing.card1.f3':'Contact form included','pricing.card1.f4':'Ready to receive clients in just days',
-      'pricing.card2.title':'Landing + Bookings','pricing.card2.desc':'Everything above plus a booking system so your calendar fills itself.',
-      'pricing.card2.f1':'Everything in the Essential plan','pricing.card2.f2':'Online booking and appointment system',
-      'pricing.card2.f3':'Photo gallery for your business','pricing.card2.f4':'Google Maps integration',
-      'pricing.card3.title':'Full site + SEO','pricing.card3.desc':'Your business shows up on Google when someone searches for what you offer.',
-      'pricing.card3.f1':'Everything in Landing + Bookings','pricing.card3.f2':'Optimization to appear on Google',
-      'pricing.card3.f3':'Advanced local SEO optimization','pricing.card3.f4':'Monthly traffic reports',
-      'nosotros.heading':'Your business deserves more',
-      'nosotros.card1.title':'More clients find you','nosotros.card1.desc':'Your business appears when someone searches for where to eat, get a haircut, or what to do nearby. Your website works for you 24 hours a day.',
-      'nosotros.card2.title':'Your business, better represented','nosotros.card2.desc':'Photos, menu, hours — all in one place, easy to view from any phone. The first impression your business deserves.',
-      'nosotros.card3.title':'Bookings without friction','nosotros.card3.desc':'Let people book or enquire without having to call you. Fewer missed calls, more confirmed appointments.',
-      'trabajos.heading':'Recent projects','trabajos.soon':'Coming soon',
-      'trabajos.card1.title':'La Cantina de Marco','trabajos.card1.label':'Restaurant · Buenos Aires',
-      'trabajos.card2.title':'Studio Noir','trabajos.card2.label':'Beauty salon · Córdoba',
-      'trabajos.card3.title':'Café Amarillo','trabajos.card3.label':'Café · Rosario',
-      'contacto.heading':'Ready to<br>start?',
-      'contacto.subtitle':"Tell us about your business and we'll reply within the day with a tailored proposal.",
-      'contacto.wa':'Message us on WhatsApp','contacto.divider':'or fill out the form',
-      'contacto.nombre.label':'Name','contacto.nombre.placeholder':'Your name',
-      'contacto.negocio.label':'Business type','contacto.negocio.placeholder':'Select an option',
-      'contacto.negocio.o1':'Restaurant / Bar','contacto.negocio.o2':'Beauty salon / Barbershop',
-      'contacto.negocio.o3':'Café / Bakery','contacto.negocio.o4':'Local shop',
-      'contacto.negocio.o5':'Professional service','contacto.negocio.o6':'Other',
-      'contacto.mensaje.label':'Tell us about your project','contacto.mensaje.placeholder':'What does your business need? Do you already have a website?',
-      'contacto.submit':'Send message',
-      'footer.tagline':'We make your business visible','footer.location':'Flåm, Norway',
-      'footer.copyright':'© 2026 Aurora Websites. All rights reserved.',
-    }
-  };
-
-  let currentLang = 'es';
-
-  function setLanguage(lang) {
-    currentLang = lang;
-    document.documentElement.lang = lang;
-    const dict = T[lang];
-
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const v = dict[el.dataset.i18n];
-      if (v !== undefined) el.textContent = v;
-    });
-    document.querySelectorAll('[data-i18n-html]').forEach(el => {
-      const v = dict[el.dataset.i18nHtml];
-      if (v !== undefined) el.innerHTML = v;
-    });
-    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
-      const v = dict[el.dataset.i18nPlaceholder];
-      if (v !== undefined) el.placeholder = v;
-    });
-
-    // Update lang button active states
-    ['Es','En'].forEach(l => {
-      const active = l.toLowerCase() === lang;
-      [document.getElementById('langBtn'+l), document.getElementById('langBtn'+l+'Mobile')]
-        .forEach(btn => btn && btn.classList.toggle('active', active));
-    });
-  }
-
-  /* ── Scroll reveal ── */
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.06, rootMargin: '0px 0px -50px 0px' });
-
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-    });
-  });
-
-  /* ── Neural network ── */
-  (function(){
-    const canvas = document.getElementById('neuralCanvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let W, H, nodes, particles, animating = true;
-
-    function rand(a,b){ return a+Math.random()*(b-a); }
-    function resize(){ const r=canvas.getBoundingClientRect(); W=canvas.width=Math.round(r.width); H=canvas.height=Math.round(r.height); }
-
-    /* tier 0=super-hub  tier 1=hub  tier 2=normal */
-    function mkNode(tier){
-      const boost=W>=1024?1.9:1;
-      const spd=[0.18,0.28,0.44][tier]*boost;
-      const r=[rand(7,11),rand(4.5,7.5),rand(1.8,4.2)][tier];
-      const op=[1.0,0.94,rand(.55,.95)][tier];
-      const gold=Math.random()<0.36;
-      return {x:rand(0,W),y:rand(0,H),vx:(Math.random()-.5)*spd,vy:(Math.random()-.5)*spd,r,op,tier,ph:rand(0,Math.PI*2),ps:rand(.006,.018),gold};
-    }
-    function mkParticle(){
-      const boost=W>=1024?1.9:1;
-      const gold=Math.random()<0.28;
-      return {x:rand(0,W),y:rand(0,H),vx:(Math.random()-.5)*.18*boost,vy:(Math.random()-.5)*.18*boost,r:rand(.3,1.8),op:rand(.15,.45),ph:rand(0,Math.PI*2),ps:rand(.003,.013),gold};
-    }
-
-    function init(){
-      nodes=[]; particles=[];
-      const mobile=W<768, tablet=W<1024;
-      const s=mobile?1:tablet?2:2;
-      const h=mobile?5:tablet?6:9;
-      const n=mobile?28:tablet?40:72;
-      const p=mobile?40:tablet?72:130;
-      for(let i=0;i<s;i++) nodes.push(mkNode(0));
-      for(let i=0;i<h;i++) nodes.push(mkNode(1));
-      for(let i=0;i<n;i++) nodes.push(mkNode(2));
-      for(let i=0;i<p;i++) particles.push(mkParticle());
-    }
-
-    function drawBackground(){
-      const spots=[
-        [W*.76,H*.38,W*.60,'rgba(120,90,230,.18)','rgba(150,125,238,.08)'],
-        [W*.28,H*.72,W*.46,'rgba(95,55,200,.14)','rgba(95,55,200,0)'],
-        [W*.58,H*.82,W*.38,'rgba(140,110,240,.12)','rgba(140,110,240,0)'],
-        [W*.90,H*.55,W*.34,'rgba(108,78,220,.10)','rgba(108,78,220,0)'],
-        /* gold warmth spots */
-        [W*.82,H*.22,W*.40,'rgba(224,138,78,.10)','rgba(224,138,78,0)'],
-        [W*.60,H*.68,W*.30,'rgba(240,170,90,.08)','rgba(240,170,90,0)'],
-      ];
-      for(const [cx,cy,sr,c0,c1] of spots){
-        const g=ctx.createRadialGradient(cx,cy,0,cx,cy,sr);
-        g.addColorStop(0,c0); g.addColorStop(1,c1);
-        ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
-      }
-    }
-
-    function drawConnections(){
-      const D=W<768?200:W<1024?205:265;
-      const DH=W<768?260:W<1024?270:350;
-      const D2=D*D, DH2=DH*DH;
-      for(let i=0;i<nodes.length;i++){
-        for(let j=i+1;j<nodes.length;j++){
-          const a=nodes[i],b=nodes[j];
-          const dx=b.x-a.x,dy=b.y-a.y,d2=dx*dx+dy*dy;
-          const hubLink=(a.tier<=1&&b.tier<=1);
-          if(d2>(hubLink?DH2:D2)) continue;
-          const d=Math.sqrt(d2),t=1-d/(hubLink?DH:D);
-          const isS=(a.tier===0||b.tier===0),isH=(a.tier<=1||b.tier<=1);
-          const op=t*t*(isS?2.0:isH?1.55:1.15);
-          const lw=isS?4.2:isH?2.9:1.8;
-          const bothGold=a.gold&&b.gold;
-          const mixedGold=a.gold!==b.gold;
-          if(bothGold){
-            if(isH){
-              const g=ctx.createLinearGradient(a.x,a.y,b.x,b.y);
-              g.addColorStop(0,'rgba(224,138,78,'+op+')');
-              g.addColorStop(.5,'rgba(255,210,130,'+(op*2.6)+')');
-              g.addColorStop(1,'rgba(224,138,78,'+op+')');
-              ctx.strokeStyle=g;
-            } else {
-              ctx.strokeStyle='rgba(224,138,78,'+op+')';
-            }
-          } else if(mixedGold){
-            const goldNode=a.gold?a:b, purpNode=a.gold?b:a;
-            const g=ctx.createLinearGradient(goldNode.x,goldNode.y,purpNode.x,purpNode.y);
-            g.addColorStop(0,'rgba(224,138,78,'+op+')');
-            g.addColorStop(.5,'rgba(220,165,210,'+(op*2.6)+')');
-            g.addColorStop(1,'rgba(118,88,225,'+op+')');
-            ctx.strokeStyle=g;
-          } else if(isH){
-            const g=ctx.createLinearGradient(a.x,a.y,b.x,b.y);
-            g.addColorStop(0,'rgba(118,88,225,'+op+')');
-            g.addColorStop(.5,'rgba(205,185,255,'+(op*2.6)+')');
-            g.addColorStop(1,'rgba(118,88,225,'+op+')');
-            ctx.strokeStyle=g;
-          } else {
-            ctx.strokeStyle='rgba(140,108,240,'+op+')';
-          }
-          if(isS){ ctx.shadowBlur=10; ctx.shadowColor=bothGold?'rgba(224,138,78,.72)':mixedGold?'rgba(190,120,200,.62)':'rgba(130,90,225,.72)'; }
-          else if(isH){ ctx.shadowBlur=5; ctx.shadowColor=bothGold?'rgba(224,138,78,.45)':mixedGold?'rgba(190,120,200,.42)':'rgba(118,88,225,.45)'; }
-          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
-          ctx.lineWidth=lw; ctx.stroke();
-          if(isS||isH) ctx.shadowBlur=0;
-        }
-      }
-    }
-
-    function drawParticles(){
-      for(const p of particles){
-        p.ph+=p.ps; const tw=Math.sin(p.ph)*.42+.58;
-        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fillStyle=p.gold?'rgba(224,155,88,'+(p.op*tw)+')':'rgba(168,142,242,'+(p.op*tw)+')';
-        ctx.fill();
-      }
-    }
-
-    function drawNodes(){
-      for(const n of nodes){
-        n.ph+=n.ps; const gl=Math.sin(n.ph)*.26+.74;
-        const G=n.gold;
-        if(n.tier===0){
-          const halo=ctx.createRadialGradient(n.x,n.y,n.r*.4,n.x,n.y,n.r+24);
-          halo.addColorStop(0,G?'rgba(255,200,120,'+(0.55*gl)+')':'rgba(215,195,255,'+(0.55*gl)+')');
-          halo.addColorStop(1,G?'rgba(224,138,78,0)':'rgba(118,88,225,0)');
-          ctx.beginPath(); ctx.arc(n.x,n.y,n.r+24,0,Math.PI*2); ctx.fillStyle=halo; ctx.fill();
-          ctx.shadowBlur=32; ctx.shadowColor=G?'rgba(224,138,78,'+gl+')':'rgba(130,90,225,'+gl+')';
-          ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2); ctx.fillStyle=G?'rgba(255,205,140,'+(n.op*gl)+')':'rgba(218,204,255,'+(n.op*gl)+')'; ctx.fill();
-          ctx.shadowBlur=0;
-          ctx.beginPath(); ctx.arc(n.x,n.y,n.r*.35,0,Math.PI*2); ctx.fillStyle='rgba(255,255,255,'+(0.98*gl)+')'; ctx.fill();
-        } else if(n.tier===1){
-          const halo=ctx.createRadialGradient(n.x,n.y,n.r*.4,n.x,n.y,n.r+17);
-          halo.addColorStop(0,G?'rgba(255,185,105,'+(0.44*gl)+')':'rgba(190,170,250,'+(0.44*gl)+')');
-          halo.addColorStop(1,G?'rgba(224,138,78,0)':'rgba(118,88,225,0)');
-          ctx.beginPath(); ctx.arc(n.x,n.y,n.r+17,0,Math.PI*2); ctx.fillStyle=halo; ctx.fill();
-          ctx.shadowBlur=22; ctx.shadowColor=G?'rgba(210,120,55,'+(0.98*gl)+')':'rgba(110,80,215,'+(0.98*gl)+')';
-          ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2); ctx.fillStyle=G?'rgba(255,190,120,'+(n.op*gl)+')':'rgba(208,190,254,'+(n.op*gl)+')'; ctx.fill();
-          ctx.shadowBlur=0;
-          ctx.beginPath(); ctx.arc(n.x,n.y,n.r*.38,0,Math.PI*2); ctx.fillStyle='rgba(255,253,248,'+(0.98*gl)+')'; ctx.fill();
-        } else {
-          ctx.shadowBlur=12; ctx.shadowColor=G?'rgba(210,120,55,'+(0.85*gl)+')':'rgba(110,80,215,'+(0.85*gl)+')';
-          ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2); ctx.fillStyle=G?'rgba(230,155,88,'+(n.op*gl)+')':'rgba(165,135,248,'+(n.op*gl)+')'; ctx.fill();
-          ctx.shadowBlur=0;
-          ctx.beginPath(); ctx.arc(n.x,n.y,n.r*.32,0,Math.PI*2); ctx.fillStyle=G?'rgba(255,225,185,'+(0.90*gl)+')':'rgba(228,218,252,'+(0.90*gl)+')'; ctx.fill();
-        }
-      }
-    }
-
-    function update(){
-      for(const n of nodes){ n.x+=n.vx; n.y+=n.vy; if(n.x<-30)n.x=W+30; else if(n.x>W+30)n.x=-30; if(n.y<-30)n.y=H+30; else if(n.y>H+30)n.y=-30; }
-      for(const p of particles){ p.x+=p.vx; p.y+=p.vy; if(p.x<-5)p.x=W+5; else if(p.x>W+5)p.x=-5; if(p.y<-5)p.y=H+5; else if(p.y>H+5)p.y=-5; }
-    }
-
-    /* Pausa el canvas cuando no es visible — sin lag al hacer scroll */
-    new IntersectionObserver(
-      (entries) => { animating = entries[0].isIntersecting; },
-      { rootMargin: '200px' }
-    ).observe(canvas);
-
-    let last=0;
-    /* 33ms = ~30fps en vez de ~66fps: mitad de carga de CPU, misma sensación visual */
-    function loop(ts){ requestAnimationFrame(loop); if(!animating||ts-last<33)return; last=ts; ctx.clearRect(0,0,W,H); drawBackground(); drawConnections(); drawParticles(); drawNodes(); update(); }
-    resize(); init(); requestAnimationFrame(loop);
-    /* Debounce resize: evita re-inicializar el canvas decenas de veces al redimensionar */
-    let _rt;
-    window.addEventListener('resize',function(){ clearTimeout(_rt); _rt=setTimeout(function(){ resize(); init(); },200); },{ passive:true });
-  })();
-
-  /* ── Navbar scroll ── */
-  (function(){
-    const hdr=document.querySelector('header');
-    function tick(){ window.scrollY>60?hdr.classList.add('header-bg'):hdr.classList.remove('header-bg'); }
-    window.addEventListener('scroll',tick,{passive:true}); tick();
-  })();
-
-  /* ── Mobile menu ── */
-  (function(){
-    const btn=document.getElementById('menuBtn');
-    const menu=document.getElementById('mobileMenu');
-    const open=document.getElementById('iconOpen');
-    const close=document.getElementById('iconClose');
-    const hdr=document.querySelector('header');
-
-    function openMenu(){
-      menu.classList.add('is-open');
-      open.classList.add('hidden'); close.classList.remove('hidden');
-      btn.setAttribute('aria-expanded','true');
-      hdr.classList.add('header-bg');
-    }
-    function closeMenu(){
-      menu.classList.remove('is-open');
-      open.classList.remove('hidden'); close.classList.add('hidden');
-      btn.setAttribute('aria-expanded','false');
-      if(window.scrollY<=60) hdr.classList.remove('header-bg');
-    }
-
-    btn.addEventListener('click',()=>menu.classList.contains('is-open')?closeMenu():openMenu());
-    document.querySelectorAll('.mobile-nav-link').forEach(l=>l.addEventListener('click',closeMenu));
-  })();
-
-  /* ── Form submit ── */
-  function handleSubmit(e){
-    e.preventDefault();
-    const btn=e.target.querySelector('button[type="submit"]');
-    const orig=btn.textContent;
-    btn.textContent=currentLang==='es'?'¡Mensaje enviado!':'Message sent!';
-    btn.disabled=true; btn.style.opacity='.7';
-    setTimeout(()=>{ btn.textContent=orig; btn.disabled=false; btn.style.opacity='1'; e.target.reset(); },3000);
-  }
-</script>
-
-<!-- Floating WhatsApp -->
-<a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20una%20web%20para%20mi%20negocio"
-   target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp"
-   class="btn-wa btn-wa-float fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center cursor-pointer">
-  <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-  </svg>
+<!-- WhatsApp FAB -->
+<a href="https://wa.me/TELEFONO?text=Hola%2C%20quiero%20info%20sobre%20sus%20servicios" class="wa-fab" target="_blank" aria-label="WhatsApp">
+    <svg width="27" height="27" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
+<script>
+    // ---- Language toggle (ES / EN) ----
+    const I18N = {
+        'nav.servicios': { es:'Servicios', en:'Services' },
+        'nav.proceso':   { es:'Proceso', en:'Process' },
+        'nav.trabajos':  { es:'Trabajos', en:'Work' },
+        'nav.nosotros':  { es:'Nosotros', en:'About' },
+        'nav.faq':       { es:'FAQ', en:'FAQ' },
+        'nav.contacto':  { es:'Contacto', en:'Contact' },
+        'nav.cta':       { es:'Empezar proyecto', en:'Start a project' },
+
+        'hero.label': { es:'Diseño web que genera resultados', en:'Web design that gets results' },
+        'hero.title': {
+            es:'<span class="fog-word w1">Webs</span> <span class="fog-word w2">que</span> <span class="fog-word w3">convierten</span><br>\n            <span class="fog-word w4"><span class="hero-shine">visitantes</span></span><br>\n            <span class="fog-word w5">en</span> <span class="fog-word w6">clientes</span>',
+            en:'<span class="fog-word w1">Websites</span> <span class="fog-word w2">that</span> <span class="fog-word w3">turn</span><br>\n            <span class="fog-word w4"><span class="hero-shine">visitors</span></span><br>\n            <span class="fog-word w5">into</span> <span class="fog-word w6">customers</span>'
+        },
+        'hero.sub': {
+            es:'Diseñamos páginas web modernas, rápidas y optimizadas para que tu negocio genere confianza desde el primer segundo.',
+            en:'We design modern, fast and optimized websites so your business builds trust from the very first second.'
+        },
+        'hero.cta1': { es:'Solicitar presupuesto', en:'Get a quote' },
+        'hero.cta2': { es:'Ver trabajos &rarr;', en:'See our work &rarr;' },
+        'hero.stat1': { es:'Respuesta en menos<br>de <b>24 hs</b>', en:'Response in under<br><b>24 hs</b>' },
+        'hero.stat2': { es:'Entrega desde<br><b>5 días</b>', en:'Delivery from<br><b>5 days</b>' },
+        'hero.stat3': { es:'<span class="hero-stars">★★★★★</span><br>+25 negocios nos eligen', en:'<span class="hero-stars">★★★★★</span><br>+25 businesses trust us' },
+
+        'plans.title': { es:'Elegí tu plan', en:'Choose your plan' },
+        'plans.sub': {
+            es:'Soluciones a medida para negocios que quieren crecer online, sin complicaciones ni contratos eternos.',
+            en:'Tailored solutions for businesses that want to grow online, without complications or endless contracts.'
+        },
+        'plans.tag': { es:'Más popular', en:'Most popular' },
+        'plans.btn': { es:'Empezar', en:'Get started' },
+
+        'plans.p1.name': { es:'Landing Esencial', en:'Essential Landing' },
+        'plans.p1.desc': { es:'Presencia online básica y profesional para que tus clientes te encuentren.', en:'A basic, professional online presence so your customers can find you.' },
+        'plans.p1.li1': { es:'Diseño personalizado para tu negocio', en:'Custom design for your business' },
+        'plans.p1.li2': { es:'100% adaptado al celular', en:'100% mobile-friendly' },
+        'plans.p1.li3': { es:'Formulario de contacto incluido', en:'Contact form included' },
+        'plans.p1.li4': { es:'Lista para recibir clientes en días', en:'Ready to welcome customers in days' },
+
+        'plans.p2.name': { es:'Landing + Reservas', en:'Landing + Bookings' },
+        'plans.p2.desc': { es:'Todo lo anterior más un sistema de turnos para que tu agenda se llene sola.', en:'Everything above, plus a booking system so your schedule fills itself.' },
+        'plans.p2.li1': { es:'Todo el plan Esencial', en:'Everything in Essential' },
+        'plans.p2.li2': { es:'Sistema de reservas y turnos online', en:'Online booking and scheduling system' },
+        'plans.p2.li3': { es:'Galería de fotos de tu negocio', en:'Photo gallery of your business' },
+        'plans.p2.li4': { es:'Google Maps integrado', en:'Integrated Google Maps' },
+
+        'plans.p3.name': { es:'Sitio completo + SEO', en:'Full site + SEO' },
+        'plans.p3.desc': { es:'Tu negocio aparece en Google cuando alguien busca lo que ofrecés.', en:'Your business shows up on Google when someone searches for what you offer.' },
+        'plans.p3.li1': { es:'Todo el plan Landing + Reservas', en:'Everything in Landing + Bookings' },
+        'plans.p3.li2': { es:'Optimización para aparecer en Google', en:'Optimization to rank on Google' },
+        'plans.p3.li3': { es:'SEO local avanzado', en:'Advanced local SEO' },
+        'plans.p3.li4': { es:'Reportes mensuales de visitas', en:'Monthly traffic reports' },
+
+        'why.title': { es:'Tu negocio merece más', en:'Your business deserves more' },
+        'why.b1.title': { es:'Más clientes te encuentran', en:'More customers find you' },
+        'why.b1.text': { es:'Tu negocio aparece cuando alguien busca dónde comer, dónde cortarse el pelo, qué hacer cerca. Tu web trabaja para vos las 24 horas.', en:'Your business shows up when someone searches where to eat, get a haircut, or what to do nearby. Your website works for you around the clock.' },
+        'why.b2.title': { es:'Tu negocio, mejor representado', en:'Your business, better represented' },
+        'why.b2.text': { es:'Las fotos, el menú, los horarios — todo en un solo lugar, fácil de ver desde el celular. La primera impresión que merece tu negocio.', en:'Photos, menu, hours — all in one place, easy to see from a phone. The first impression your business deserves.' },
+        'why.b3.title': { es:'Reservas sin fricción', en:'Bookings without friction' },
+        'why.b3.text': { es:'Que la gente pueda reservar o consultar sin tener que llamarte. Menos llamadas perdidas, más turnos confirmados.', en:'Let people book or ask questions without having to call you. Fewer missed calls, more confirmed bookings.' },
+
+        'process.title': { es:'Simple, rápido y transparente', en:'Simple, fast and transparent' },
+        'process.sub': { es:'Del primer mensaje a tu web online en cuestión de días, sin vueltas.', en:'From the first message to your website live in just days, no detours.' },
+        'process.s1.title': { es:'Nos contás tu negocio', en:'Tell us about your business' },
+        'process.s1.text': { es:'Hablamos por WhatsApp o completás el formulario. Te hacemos las preguntas clave para entenderte.', en:'We chat over WhatsApp or you fill out the form. We ask the key questions to understand you.' },
+        'process.s2.title': { es:'Diseñamos tu propuesta', en:'We design your proposal' },
+        'process.s2.text': { es:'En 24–48 hs tenés un diseño personalizado para aprobar o pedir ajustes.', en:'Within 24–48 hs you get a custom design to approve or request changes.' },
+        'process.s3.title': { es:'Desarrollamos y ajustamos', en:'We build and refine' },
+        'process.s3.text': { es:'Construimos tu web con tus correcciones incluidas hasta que quede perfecta.', en:'We build your website, including your revisions, until it\'s perfect.' },
+        'process.s4.title': { es:'Lanzamos tu web', en:'We launch your website' },
+        'process.s4.text': { es:'Publicamos, configuramos todo y te entregamos listo para empezar a recibir clientes.', en:'We publish, configure everything, and hand it over ready to start receiving customers.' },
+
+        'portfolio.title': { es:'Proyectos recientes', en:'Recent projects' },
+        'portfolio.sub': { es:'Cada negocio tiene su propia historia. Aquí algunas de las webs que construimos.', en:'Every business has its own story. Here are some of the websites we\'ve built.' },
+        'portfolio.soon': { es:'Próximamente', en:'Coming soon' },
+        'portfolio.p1.type': { es:'Restaurante &middot; Buenos Aires', en:'Restaurant &middot; Buenos Aires' },
+        'portfolio.p2.type': { es:'Salón de estética &middot; Córdoba', en:'Beauty salon &middot; Córdoba' },
+        'portfolio.p3.type': { es:'Cafetería &middot; Rosario', en:'Café &middot; Rosario' },
+
+        'faq.title': { es:'Resolvemos tus dudas', en:'We answer your questions' },
+        'faq.sub': { es:'Si tenés otra pregunta, escribinos por WhatsApp y te respondemos al toque.', en:'If you have another question, message us on WhatsApp and we\'ll reply right away.' },
+        'faq.q1.q': { es:'¿Cuánto tiempo tarda en estar lista mi web?', en:'How long does it take for my website to be ready?' },
+        'faq.q1.a': { es:'Depende del plan, pero en general entre 3 y 7 días desde que nos pasás todo el contenido de tu negocio. Te vamos mostrando avances en el camino.', en:'It depends on the plan, but generally between 3 and 7 days after you send us all your business content. We\'ll show you progress along the way.' },
+        'faq.q2.q': { es:'¿Necesito tener mi propio dominio y hosting?', en:'Do I need my own domain and hosting?' },
+        'faq.q2.a': { es:'No es necesario. Si ya tenés uno lo usamos, y si no, te ayudamos a conseguirlo y dejamos todo configurado y funcionando.', en:'Not necessarily. If you already have one we\'ll use it, and if not, we\'ll help you get one and leave everything set up and running.' },
+        'faq.q3.q': { es:'¿Puedo pedir cambios después de que la web esté lista?', en:'Can I request changes after the website is ready?' },
+        'faq.q3.a': { es:'Sí. Antes de la entrega incluimos rondas de ajustes sin costo, y después también podés pedirnos cambios puntuales cuando lo necesites.', en:'Yes. Before delivery we include free rounds of adjustments, and afterward you can also request specific changes whenever you need.' },
+        'faq.q4.q': { es:'¿Qué pasa si no tengo fotos o contenido de mi negocio?', en:'What if I don\'t have photos or content for my business?' },
+        'faq.q4.a': { es:'No hay problema, te ayudamos a redactar los textos y usamos imágenes de stock de calidad hasta que tengas tus propias fotos.', en:'No problem, we\'ll help you write the copy and use quality stock images until you have your own photos.' },
+        'faq.q5.q': { es:'¿Ofrecen mantenimiento mensual?', en:'Do you offer monthly maintenance?' },
+        'faq.q5.a': { es:'Sí, tenemos un plan opcional de mantenimiento para cambios, actualizaciones y soporte continuo. Te contamos los detalles cuando hablemos por WhatsApp.', en:'Yes, we have an optional maintenance plan for changes, updates and ongoing support. We\'ll share the details when we talk on WhatsApp.' },
+
+        'cta.h': { es:'¿Listo para<br><span class="grad-text">empezar?</span>', en:'Ready to<br><span class="grad-text">get started?</span>' },
+        'cta.sub': { es:'Contanos sobre tu negocio y te respondemos en el día con una propuesta a medida.', en:'Tell us about your business and we\'ll reply the same day with a tailored proposal.' },
+        'cta.wa': { es:'Escribinos por WhatsApp', en:'Message us on WhatsApp' },
+        'cta.or': { es:'o completá el formulario', en:'or fill out the form' },
+
+        'form.name.label': { es:'Nombre', en:'Name' },
+        'form.name.ph': { es:'Tu nombre', en:'Your name' },
+        'form.type.label': { es:'Tipo de negocio', en:'Business type' },
+        'form.type.ph': { es:'Seleccioná una opción', en:'Select an option' },
+        'form.type.o1': { es:'Restaurante / Café', en:'Restaurant / Café' },
+        'form.type.o2': { es:'Estética / Salón de belleza', en:'Beauty / Hair salon' },
+        'form.type.o3': { es:'Salud / Clínica', en:'Health / Clinic' },
+        'form.type.o4': { es:'Fitness / Deporte', en:'Fitness / Sports' },
+        'form.type.o5': { es:'Comercio / Tienda', en:'Retail / Shop' },
+        'form.type.o6': { es:'Servicios profesionales', en:'Professional services' },
+        'form.type.o7': { es:'Otro', en:'Other' },
+        'form.msg.label': { es:'Contanos sobre tu proyecto', en:'Tell us about your project' },
+        'form.msg.ph': { es:'¿Qué necesita tu negocio? ¿Ya tenés web?', en:'What does your business need? Do you already have a website?' },
+        'form.submit': { es:'Enviar mensaje', en:'Send message' },
+
+        'footer.tag': { es:'Hacemos visible tu negocio. Diseño web, desarrollo y SEO para negocios locales.', en:'We make your business visible. Web design, development and SEO for local businesses.' },
+        'footer.col.services': { es:'Servicios', en:'Services' },
+        'footer.col.company': { es:'Empresa', en:'Company' },
+        'footer.col.contact': { es:'Contacto', en:'Contact' },
+        'footer.copyright': { es:'&copy; 2026 Aurora Websites. Todos los derechos reservados.', en:'&copy; 2026 Aurora Websites. All rights reserved.' },
+        'footer.madewith': { es:'Hecho con &#9825; en Argentina', en:'Made with &#9825; in Argentina' }
+    };
+
+    function applyLang(lang) {
+        document.documentElement.lang = lang;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const entry = I18N[el.getAttribute('data-i18n')];
+            if (entry) el.innerHTML = entry[lang];
+        });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            const entry = I18N[el.getAttribute('data-i18n-placeholder')];
+            if (entry) el.setAttribute('placeholder', entry[lang]);
+        });
+        document.querySelectorAll('.lang-opt').forEach(el => {
+            el.classList.toggle('on', el.getAttribute('data-lang-opt') === lang);
+        });
+        localStorage.setItem('auroraLang', lang);
+    }
+
+    const savedLang = localStorage.getItem('auroraLang') || 'es';
+    applyLang(savedLang);
+
+    [document.getElementById('langSwitch'), document.getElementById('langSwitchMob')].forEach(btn => {
+        if (!btn) return;
+        btn.addEventListener('click', () => {
+            const current = document.documentElement.lang === 'en' ? 'en' : 'es';
+            applyLang(current === 'es' ? 'en' : 'es');
+        });
+    });
+</script>
+
+<script>
+    // ---- Navbar scroll ----
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('stuck', window.scrollY > 80);
+    }, { passive: true });
+
+    // ---- Hamburger ----
+    const burger   = document.getElementById('burger');
+    const mobMenu  = document.getElementById('mobMenu');
+    burger.addEventListener('click', () => {
+        const open = mobMenu.classList.toggle('on');
+        burger.classList.toggle('on', open);
+    });
+    document.querySelectorAll('.ml').forEach(a => {
+        a.addEventListener('click', () => {
+            mobMenu.classList.remove('on');
+            burger.classList.remove('on');
+        });
+    });
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+        if (mobMenu.classList.contains('on') && !mobMenu.contains(e.target) && !burger.contains(e.target)) {
+            mobMenu.classList.remove('on');
+            burger.classList.remove('on');
+        }
+    });
+
+    // ---- Intersection Observer (scroll reveals) ----
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -55px 0px' });
+
+    document.querySelectorAll('.rv,.rvl,.rvr').forEach(el => io.observe(el));
+
+    // ---- FAQ accordion ----
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.querySelector('.faq-q').addEventListener('click', () => {
+            const wasOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item.open').forEach(o => o.classList.remove('open'));
+            if (!wasOpen) item.classList.add('open');
+        });
+    });
+
+    // ---- Form → WhatsApp ----
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const nombre = document.getElementById('nombre').value.trim();
+        const tipo   = document.getElementById('tipo').value;
+        const msg    = document.getElementById('msg').value.trim();
+        const btn    = this.querySelector('.form-submit');
+
+        const text = encodeURIComponent(
+            `Hola! Soy ${nombre}. Tengo un/a ${tipo || 'negocio'} y me gustaría hablar sobre mi web.\n\n${msg}`
+        );
+        window.open(`https://wa.me/TELEFONO?text=${text}`, '_blank');
+
+        btn.textContent = '✓ Enviado — te contactamos pronto';
+        btn.style.background = 'linear-gradient(135deg,#25D366,#128C7E)';
+        setTimeout(() => {
+            btn.textContent = 'Enviar mensaje';
+            btn.style.background = '';
+            this.reset();
+        }, 4000);
+    });
+</script>
+
+<!-- ========= HERO AURORA CANVAS ========= -->
+<script>
+(function() {
+    'use strict';
+
+    const isDesktop = () => window.innerWidth > 768;
+
+    const CONFIG = {
+        starCount: isDesktop() ? 220 : 130,
+        auroraLayers: 4,
+        waveSegments: 60,
+        colors: [
+            [108, 60, 225],
+            [0, 212, 255],
+            [155, 110, 255],
+        ]
+    };
+
+    const canvas = document.getElementById('auroraCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d', { alpha: false });
+    const heroEl = canvas.closest('.hero');
+
+    let width, height, time = 0;
+
+    function resize() {
+        width = heroEl.clientWidth;
+        height = heroEl.clientHeight;
+        canvas.width = width;
+        canvas.height = height;
+    }
+    resize();
+
+    class Star {
+        constructor() { this.reset(); }
+
+        reset() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.hasGlow = Math.random() < 0.13;
+            if (this.hasGlow) {
+                this.size = Math.random() * 3.5 + 2.5;
+                this.baseOpacity = 1.0;
+            } else {
+                this.size = Math.random() * 2.0 + 0.8;
+                this.baseOpacity = Math.random() * 0.2 + 0.82;
+            }
+            this.opacity = this.baseOpacity;
+            this.twinkleSpeed = Math.random() * 0.02 + 0.005;
+            this.twinklePhase = Math.random() * Math.PI * 2;
+            this.driftX = (Math.random() - 0.5) * 0.12;
+            this.driftY = (Math.random() - 0.5) * 0.12;
+            this.isShooting = false;
+            this.shootingTimer = 0;
+        }
+
+        update() {
+            this.twinklePhase += this.twinkleSpeed;
+            this.opacity = this.baseOpacity * (0.88 + 0.12 * Math.sin(this.twinklePhase));
+            this.x += this.driftX;
+            this.y += this.driftY;
+            if (this.x < 0) this.x = width;
+            if (this.x > width) this.x = 0;
+            if (this.y < 0) this.y = height;
+            if (this.y > height) this.y = 0;
+
+            if (!this.isShooting && Math.random() < 0.0002) {
+                this.isShooting = true;
+                this.shootingTimer = 0;
+                this.shootingStartX = this.x;
+                this.shootingStartY = this.y;
+                this.shootingAngle = Math.PI * 0.25 + (Math.random() - 0.5) * 0.4;
+            }
+            if (this.isShooting) {
+                this.shootingTimer += 0.5;
+                const progress = this.shootingTimer / 60;
+                if (progress > 1) {
+                    this.isShooting = false;
+                    this.x = this.shootingStartX + Math.cos(this.shootingAngle) * 120;
+                    this.y = this.shootingStartY + Math.sin(this.shootingAngle) * 120;
+                } else {
+                    this.x = this.shootingStartX + Math.cos(this.shootingAngle) * progress * 220;
+                    this.y = this.shootingStartY + Math.sin(this.shootingAngle) * progress * 220;
+                    this.opacity = 1 - progress * 0.8;
+                }
+            }
+        }
+
+        draw(ctx) {
+            if (this.isShooting) {
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(
+                    this.x - Math.cos(this.shootingAngle) * 28,
+                    this.y - Math.sin(this.shootingAngle) * 28
+                );
+                ctx.strokeStyle = `rgba(255,255,255,${this.opacity * 0.7})`;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            }
+
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255,255,255,${this.opacity})`;
+            ctx.fill();
+
+            if (this.hasGlow && this.opacity > 0.3) {
+                const g = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 4.5);
+                g.addColorStop(0, `rgba(200,170,255,${this.opacity * 0.45})`);
+                g.addColorStop(1, 'rgba(200,170,255,0)');
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size * 4.5, 0, Math.PI * 2);
+                ctx.fillStyle = g;
+                ctx.fill();
+            }
+        }
+    }
+
+    class AuroraLayer {
+        constructor(index) {
+            this.index = index;
+            this.amplitude = Math.random() * 100 + 70;
+            this.speed = Math.random() * 0.12 + 0.04;
+            this.phase = Math.random() * Math.PI * 2;
+            this.yOffset = (index / CONFIG.auroraLayers) * height * 0.6 + height * 0.05;
+            this.width = width * 1.5;
+            this.color1 = CONFIG.colors[index % CONFIG.colors.length];
+            this.color2 = CONFIG.colors[(index + 1) % CONFIG.colors.length];
+            this.baseAlpha = 0.07 + (1 - index / CONFIG.auroraLayers) * 0.09;
+            this.alpha = this.baseAlpha;
+            this.driftSpeed = (Math.random() - 0.5) * 0.08 + 0.04;
+            this.driftOffset = 0;
+        }
+
+        update(time) {
+            this.phase += this.speed * 0.01;
+            this.driftOffset += this.driftSpeed * 0.005;
+            this.alpha = this.baseAlpha * (0.8 + 0.2 * Math.sin(time * 0.0005 + this.index));
+        }
+
+        draw(ctx, width, height, time) {
+            const segs = CONFIG.waveSegments;
+            const points = new Float32Array((segs + 1) * 2);
+
+            for (let i = 0; i <= segs; i++) {
+                const nx = i / segs;
+                const x = nx * this.width - this.width * 0.25 + this.driftOffset;
+                const wave1 = Math.sin(nx * 4 + this.phase) * this.amplitude;
+                const wave2 = Math.sin(nx * 7 + this.phase * 1.3 + 1.2) * this.amplitude * 0.4;
+                const wave3 = Math.sin(nx * 2 + this.phase * 0.7 + 3.8) * this.amplitude * 0.6;
+                points[i * 2]     = x;
+                points[i * 2 + 1] = this.yOffset + wave1 + wave2 + wave3;
+            }
+
+            for (let layer = 0; layer < 2; layer++) {
+                const alphaMul = 1 - layer * 0.35;
+                const yOff = layer * 18;
+
+                ctx.beginPath();
+                ctx.moveTo(points[0], points[1] + yOff);
+                for (let i = 1; i <= segs; i++) {
+                    ctx.lineTo(points[i * 2], points[i * 2 + 1] + yOff);
+                }
+                ctx.lineTo(points[segs * 2], height);
+                ctx.lineTo(points[0], height);
+                ctx.closePath();
+
+                const gradient = ctx.createLinearGradient(0, 0, width, 0);
+                const c1 = this.color1, c2 = this.color2;
+                const a = this.alpha * alphaMul;
+                gradient.addColorStop(0,    `rgba(${c1[0]},${c1[1]},${c1[2]},${a * 0.5})`);
+                gradient.addColorStop(0.33, `rgba(${c2[0]},${c2[1]},${c2[2]},${a * 0.9})`);
+                gradient.addColorStop(0.66, `rgba(${c1[0]},${c1[1]},${c1[2]},${a * 0.7})`);
+                gradient.addColorStop(1,    `rgba(${c2[0]},${c2[1]},${c2[2]},${a * 0.5})`);
+                ctx.fillStyle = gradient;
+                ctx.fill();
+            }
+
+            ctx.beginPath();
+            ctx.moveTo(points[0], points[1]);
+            for (let i = 1; i <= segs; i++) {
+                ctx.lineTo(points[i * 2], points[i * 2 + 1]);
+            }
+            ctx.strokeStyle = `rgba(180,160,255,${0.12 + this.alpha * 0.2})`;
+            ctx.lineWidth = 1.5;
+            ctx.stroke();
+        }
+    }
+
+    const stars = Array.from({ length: CONFIG.starCount }, () => new Star());
+    const auroraLayers = Array.from({ length: CONFIG.auroraLayers }, (_, i) => new AuroraLayer(i));
+
+    let lastFrame = 0;
+    function animate(timestamp) {
+        requestAnimationFrame(animate);
+        if (timestamp - lastFrame < 14) return; // ~72fps cap
+        lastFrame = timestamp;
+        time = timestamp;
+
+        ctx.fillStyle = '#0A0A0F';
+        ctx.fillRect(0, 0, width, height);
+
+        auroraLayers.forEach(layer => {
+            layer.update(time);
+            layer.draw(ctx, width, height, time);
+        });
+
+        stars.forEach(star => {
+            star.update();
+            star.draw(ctx);
+        });
+    }
+
+    requestAnimationFrame(animate);
+
+    let lastDesktop = isDesktop();
+    window.addEventListener('resize', () => {
+        resize();
+        const nowDesktop = isDesktop();
+        if (nowDesktop !== lastDesktop) {
+            lastDesktop = nowDesktop;
+            const target = nowDesktop ? 220 : 130;
+            stars.length = 0;
+            for (let i = 0; i < target; i++) stars.push(new Star());
+        } else {
+            stars.forEach(star => star.reset());
+        }
+        auroraLayers.forEach(layer => {
+            layer.yOffset = (layer.index / CONFIG.auroraLayers) * height * 0.6 + height * 0.05;
+            layer.width   = width * 1.5;
+        });
+    });
+})();
+</script>
 </body>
 </html>
