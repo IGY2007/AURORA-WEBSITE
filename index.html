@@ -1538,21 +1538,33 @@
     requestAnimationFrame(animate);
 
     let lastDesktop = isDesktop();
+    let lastWidth = width;
+    let resizeTimer = null;
     window.addEventListener('resize', () => {
-        resize();
-        const nowDesktop = isDesktop();
-        if (nowDesktop !== lastDesktop) {
-            lastDesktop = nowDesktop;
-            const target = nowDesktop ? 220 : 130;
-            stars.length = 0;
-            for (let i = 0; i < target; i++) stars.push(new Star());
-        } else {
-            stars.forEach(star => star.reset());
-        }
-        auroraLayers.forEach(layer => {
-            layer.yOffset = (layer.index / CONFIG.auroraLayers) * height * 0.6 + height * 0.05;
-            layer.width   = width * 1.5;
-        });
+        // Mobile browsers fire 'resize' when the URL bar shows/hides during scroll —
+        // that only changes height, not width. Ignore those so stars/canvas don't
+        // reset mid-scroll; only react to real width changes (rotation, actual resize).
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            const newWidth = heroEl.clientWidth;
+            if (newWidth === lastWidth) return;
+            lastWidth = newWidth;
+
+            resize();
+            const nowDesktop = isDesktop();
+            if (nowDesktop !== lastDesktop) {
+                lastDesktop = nowDesktop;
+                const target = nowDesktop ? 220 : 130;
+                stars.length = 0;
+                for (let i = 0; i < target; i++) stars.push(new Star());
+            } else {
+                stars.forEach(star => star.reset());
+            }
+            auroraLayers.forEach(layer => {
+                layer.yOffset = (layer.index / CONFIG.auroraLayers) * height * 0.6 + height * 0.05;
+                layer.width   = width * 1.5;
+            });
+        }, 150);
     });
 })();
 </script>
