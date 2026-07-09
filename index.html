@@ -1378,17 +1378,17 @@
             this.shootingTimer = 0;
         }
 
-        update() {
-            this.twinklePhase += this.twinkleSpeed;
+        update(dtScale) {
+            this.twinklePhase += this.twinkleSpeed * dtScale;
             this.opacity = this.baseOpacity * (0.88 + 0.12 * Math.sin(this.twinklePhase));
-            this.x += this.driftX;
-            this.y += this.driftY;
+            this.x += this.driftX * dtScale;
+            this.y += this.driftY * dtScale;
             if (this.x < 0) this.x = width;
             if (this.x > width) this.x = 0;
             if (this.y < 0) this.y = height;
             if (this.y > height) this.y = 0;
 
-            if (!this.isShooting && Math.random() < 0.0002) {
+            if (!this.isShooting && Math.random() < 0.0002 * dtScale) {
                 this.isShooting = true;
                 this.shootingTimer = 0;
                 this.shootingStartX = this.x;
@@ -1396,7 +1396,7 @@
                 this.shootingAngle = Math.PI * 0.25 + (Math.random() - 0.5) * 0.4;
             }
             if (this.isShooting) {
-                this.shootingTimer += 0.5;
+                this.shootingTimer += 0.5 * dtScale;
                 const progress = this.shootingTimer / 60;
                 if (progress > 1) {
                     this.isShooting = false;
@@ -1456,9 +1456,9 @@
             this.driftOffset = 0;
         }
 
-        update(time) {
-            this.phase += this.speed * 0.01;
-            this.driftOffset += this.driftSpeed * 0.005;
+        update(time, dtScale) {
+            this.phase += this.speed * 0.01 * dtScale;
+            this.driftOffset += this.driftSpeed * 0.005 * dtScale;
             this.alpha = this.baseAlpha * (0.8 + 0.2 * Math.sin(time * 0.0005 + this.index));
         }
 
@@ -1518,6 +1518,12 @@
     function animate(timestamp) {
         requestAnimationFrame(animate);
         if (timestamp - lastFrame < 14) return; // ~72fps cap
+        // Normalize motion to a 60fps baseline so the animation runs at the
+        // same real-world speed regardless of the device's actual frame rate
+        // (otherwise a slower phone would render the same per-frame increments
+        // less often per second, making everything drift/move more slowly).
+        const dt = lastFrame === 0 ? 16.67 : timestamp - lastFrame;
+        const dtScale = Math.min(dt / 16.67, 3); // cap to avoid big jumps after tab-switch/lag spikes
         lastFrame = timestamp;
         time = timestamp;
 
@@ -1525,12 +1531,12 @@
         ctx.fillRect(0, 0, width, height);
 
         auroraLayers.forEach(layer => {
-            layer.update(time);
+            layer.update(time, dtScale);
             layer.draw(ctx, width, height, time);
         });
 
         stars.forEach(star => {
-            star.update();
+            star.update(dtScale);
             star.draw(ctx);
         });
     }
