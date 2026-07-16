@@ -651,8 +651,16 @@
         .foot-links { display:flex; flex-direction:column; gap:9px; }
         .foot-links a { font-size:.88rem; color:var(--txt-3); transition:color .25s; }
         .foot-links a:hover { color:var(--color-secundario); }
+        .foot-legal {
+            display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+            gap:7px 16px; margin-bottom:22px; padding-bottom:22px;
+            border-bottom:1px solid var(--border);
+            font-size:.78rem; color:var(--txt-3);
+        }
+        .foot-legal a { color:var(--txt-3); transition:color .25s; white-space:nowrap; }
+        .foot-legal a:hover { color:var(--color-secundario); }
+        .foot-legal-dot { color:var(--border-hover); }
         .foot-bottom {
-            border-top:1px solid var(--border); padding-top:22px;
             display:flex; align-items:center; justify-content:space-between;
             font-size:.78rem; color:var(--txt-3); flex-wrap:wrap; gap:10px;
         }
@@ -1096,9 +1104,21 @@
             </div>
         </div>
 
+        <div class="foot-legal">
+            <a href="Media/Aviso%20Legal.pdf" target="_blank" rel="noopener" data-i18n="footer.legal.notice">Aviso Legal</a>
+            <span class="foot-legal-dot" aria-hidden="true">&middot;</span>
+            <a href="Media/Política%20de%20Privacidad.pdf" target="_blank" rel="noopener" data-i18n="footer.legal.privacy">Política de Privacidad</a>
+            <span class="foot-legal-dot" aria-hidden="true">&middot;</span>
+            <a href="Media/Términos%20de%20Servicio.pdf" target="_blank" rel="noopener" data-i18n="footer.legal.terms">Términos de Servicio</a>
+            <span class="foot-legal-dot" aria-hidden="true">&middot;</span>
+            <a href="Media/Política%20de%20Cookies.pdf" target="_blank" rel="noopener" data-i18n="footer.legal.cookies">Política de Cookies</a>
+            <span class="foot-legal-dot" aria-hidden="true">&middot;</span>
+            <a href="Media/Política%20de%20Cancelaciones%20y%20Reembolsos.pdf" target="_blank" rel="noopener" data-i18n="footer.legal.refunds">Cancelaciones y Reembolsos</a>
+        </div>
+
         <div class="foot-bottom">
             <span data-i18n="footer.copyright">&copy; 2026 Aurora Websites. Todos los derechos reservados.</span>
-            <span data-i18n="footer.madewith">Hecho con &#9825; en Argentina</span>
+            <span data-i18n="footer.madewith">Hecho con &#9825; en Noruega</span>
         </div>
     </div>
 </footer>
@@ -1227,7 +1247,12 @@
         'footer.col.company': { es:'Empresa', en:'Company' },
         'footer.col.contact': { es:'Contacto', en:'Contact' },
         'footer.copyright': { es:'&copy; 2026 Aurora Websites. Todos los derechos reservados.', en:'&copy; 2026 Aurora Websites. All rights reserved.' },
-        'footer.madewith': { es:'Hecho con &#9825; en Argentina', en:'Made with &#9825; in Argentina' }
+        'footer.madewith': { es:'Hecho con &#9825; en Noruega', en:'Made with &#9825; in Norway' },
+        'footer.legal.notice': { es:'Aviso Legal', en:'Legal Notice' },
+        'footer.legal.privacy': { es:'Política de Privacidad', en:'Privacy Policy' },
+        'footer.legal.terms': { es:'Términos de Servicio', en:'Terms of Service' },
+        'footer.legal.cookies': { es:'Política de Cookies', en:'Cookie Policy' },
+        'footer.legal.refunds': { es:'Cancelaciones y Reembolsos', en:'Cancellations & Refunds' }
     };
 
     function applyLang(lang) {
