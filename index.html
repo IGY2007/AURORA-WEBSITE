@@ -487,8 +487,16 @@
             box-shadow:0 12px 40px rgba(0,0,0,.3), 0 0 22px var(--secundario-glow);
         }
         .ben-n {
-            font-size:2.4rem; line-height:1;
-            margin-bottom:14px;
+            width:56px; height:56px; border-radius:50%;
+            background:rgba(0,212,255,.08);
+            border:1.5px solid rgba(0,212,255,.35);
+            display:flex; align-items:center; justify-content:center;
+            color:var(--color-secundario);
+            margin-bottom:18px; transition:all .3s ease;
+        }
+        .ben:hover .ben-n {
+            background:rgba(0,212,255,.16);
+            box-shadow:0 0 20px var(--secundario-glow);
         }
         .ben-title { font-size:1.08rem; font-weight:700; margin-bottom:8px; }
         .ben-text { font-size:.88rem; color:var(--txt-2); line-height:1.72; }
@@ -871,17 +879,23 @@
         </div>
         <div class="ben-grid">
             <div class="ben rv">
-                <div class="ben-n">🎯</div>
+                <div class="ben-n">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
                 <h3 class="ben-title" data-i18n="why.b1.title">Más clientes te encuentran</h3>
                 <p class="ben-text" data-i18n="why.b1.text">Tu negocio aparece cuando alguien busca dónde comer, dónde cortarse el pelo, qué hacer cerca. Tu web trabaja para vos las 24 horas.</p>
             </div>
             <div class="ben rv d1">
-                <div class="ben-n">✨</div>
+                <div class="ben-n">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                </div>
                 <h3 class="ben-title" data-i18n="why.b2.title">Tu negocio, mejor representado</h3>
                 <p class="ben-text" data-i18n="why.b2.text">Las fotos, el menú, los horarios — todo en un solo lugar, fácil de ver desde el celular. La primera impresión que merece tu negocio.</p>
             </div>
             <div class="ben rv d2">
-                <div class="ben-n">⚡</div>
+                <div class="ben-n">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M9 16l2 2 4-4"/></svg>
+                </div>
                 <h3 class="ben-title" data-i18n="why.b3.title">Reservas sin fricción</h3>
                 <p class="ben-text" data-i18n="why.b3.text">Que la gente pueda reservar o consultar sin tener que llamarte. Menos llamadas perdidas, más turnos confirmados.</p>
             </div>
@@ -1099,7 +1113,7 @@
                 <div class="foot-col-t" data-i18n="footer.col.contact">Contacto</div>
                 <ul class="foot-links">
                     <li><a href="https://wa.me/4792560268" target="_blank">WhatsApp</a></li>
-                    <li><a href="mailto:info@aurorawebsites.com">info@aurorawebsites.com</a></li>
+                    <li><a href="mailto:garayjulian40@gmail.com">garayjulian40@gmail.com</a></li>
                 </ul>
             </div>
         </div>
