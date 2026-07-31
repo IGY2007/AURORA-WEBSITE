@@ -488,15 +488,15 @@
         }
         .ben-n {
             width:56px; height:56px; border-radius:50%;
-            background:rgba(0,212,255,.08);
-            border:1.5px solid rgba(0,212,255,.35);
+            background:linear-gradient(rgba(108,60,225,.12),rgba(108,60,225,.12)), var(--bg);
+            border:2px solid var(--color-primario);
             display:flex; align-items:center; justify-content:center;
             color:var(--color-secundario);
             margin-bottom:18px; transition:all .3s ease;
         }
         .ben:hover .ben-n {
-            background:rgba(0,212,255,.16);
-            box-shadow:0 0 20px var(--secundario-glow);
+            background:linear-gradient(rgba(108,60,225,.25),rgba(108,60,225,.25)), var(--bg);
+            box-shadow:0 0 24px var(--primario-glow);
         }
         .ben-title { font-size:1.08rem; font-weight:700; margin-bottom:8px; }
         .ben-text { font-size:.88rem; color:var(--txt-2); line-height:1.72; }
