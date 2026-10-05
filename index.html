@@ -543,26 +543,48 @@
            ================================================ */
         .port-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
         .port-card {
+            display:block; color:inherit; text-decoration:none;
             background:var(--glass); border:1px solid var(--border);
-            border-radius:var(--r-xl); overflow:hidden; transition:all .4s ease;
+            border-radius:var(--r-xl); overflow:hidden;
+            transition:transform .5s cubic-bezier(.34,1.56,.64,1), border-color .3s ease, box-shadow .4s ease;
         }
         .port-card:hover {
             transform:translateY(-7px); border-color:rgba(139,92,246,.9);
             box-shadow:0 22px 50px rgba(0,0,0,.45), 0 0 0 1px rgba(139,92,246,.35), 0 12px 40px rgba(108,60,225,.35);
         }
+        .port-card:focus-visible {
+            outline:2px solid var(--color-secundario); outline-offset:4px;
+            transform:translateY(-7px);
+        }
+        .port-card:active { transform:translateY(-3px) scale(.985); transition-duration:.15s; }
         .port-thumb {
-            aspect-ratio:16/9; position:relative; overflow:hidden;
+            aspect-ratio:16/10; position:relative; overflow:hidden;
             background:linear-gradient(135deg,rgba(108,60,225,.25),rgba(0,212,255,.15));
-            display:flex; align-items:center; justify-content:center;
         }
-        .port-thumb::before {
-            content:''; position:absolute; inset:0;
-            background:var(--grad); opacity:.08;
+        .port-thumb img {
+            width:100%; height:100%; object-fit:cover; object-position:top center; display:block;
+            transition:transform .8s cubic-bezier(.22,1,.36,1);
         }
-        .port-thumb-label {
-            font-size:.7rem; letter-spacing:.14em; text-transform:uppercase;
-            color:var(--txt-3); position:relative; z-index:1;
+        .port-card:hover .port-thumb img,
+        .port-card:focus-visible .port-thumb img { transform:scale(1.05); }
+        .port-thumb::after {
+            content:''; position:absolute; inset:0; pointer-events:none;
+            background:linear-gradient(to top, rgba(7,7,15,.6), transparent 55%);
         }
+        .port-visit {
+            position:absolute; right:14px; bottom:14px; z-index:1;
+            display:inline-flex; align-items:center; gap:6px;
+            padding:7px 13px; border-radius:999px;
+            font-size:.72rem; font-weight:600; letter-spacing:.04em; color:#fff;
+            background:rgba(7,7,15,.55); border:1px solid rgba(255,255,255,.18);
+            backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+            opacity:0; transform:translateY(8px);
+            transition:opacity .35s ease, transform .5s cubic-bezier(.34,1.56,.64,1);
+        }
+        .port-visit svg { width:12px; height:12px; }
+        .port-card:hover .port-visit,
+        .port-card:focus-visible .port-visit { opacity:1; transform:translateY(0); }
+        @media (hover:none) { .port-visit { opacity:1; transform:none; } }
         .port-info { padding:18px 22px; }
         .port-name { font-size:.98rem; font-weight:700; margin-bottom:4px; }
         .port-type { font-size:.74rem; color:var(--txt-3); text-transform:uppercase; letter-spacing:.1em; }
@@ -955,27 +977,36 @@
             <p class="section-sub rv d2" data-i18n="portfolio.sub">Cada negocio tiene su propia historia. Aquí algunas de las webs que construimos.</p>
         </div>
         <div class="port-grid">
-            <div class="port-card rv">
-                <div class="port-thumb"><span class="port-thumb-label" data-i18n="portfolio.soon">Próximamente</span></div>
-                <div class="port-info">
-                    <div class="port-name">La Cantina de Marco</div>
-                    <div class="port-type" data-i18n="portfolio.p1.type">Restaurante &middot; Buenos Aires</div>
+            <a class="port-card rv" href="https://landing-automator.vercel.app/negocios/gyoza-bistro/" target="_blank" rel="noopener">
+                <div class="port-thumb">
+                    <img src="portfolio/gyoza-bistro.jpg" alt="Página de inicio de Gyoza Bistró" width="1200" height="840" loading="lazy" decoding="async">
+                    <span class="port-visit"><span data-i18n="portfolio.visit">Ver sitio</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
                 </div>
-            </div>
-            <div class="port-card rv d1">
-                <div class="port-thumb"><span class="port-thumb-label" data-i18n="portfolio.soon">Próximamente</span></div>
                 <div class="port-info">
-                    <div class="port-name">Studio Noir</div>
-                    <div class="port-type" data-i18n="portfolio.p2.type">Salón de estética &middot; Córdoba</div>
+                    <div class="port-name">Gyoza Bistró</div>
+                    <div class="port-type" data-i18n="portfolio.p1.type">Restaurante asiático &middot; Barcelona</div>
                 </div>
-            </div>
-            <div class="port-card rv d2">
-                <div class="port-thumb"><span class="port-thumb-label" data-i18n="portfolio.soon">Próximamente</span></div>
+            </a>
+            <a class="port-card rv d1" href="https://landing-automator.vercel.app/negocios/jotunstogo/" target="_blank" rel="noopener">
+                <div class="port-thumb">
+                    <img src="portfolio/jotunstogo.jpg" alt="Página de inicio de Jotunstogo" width="1200" height="840" loading="lazy" decoding="async">
+                    <span class="port-visit"><span data-i18n="portfolio.visit">Ver sitio</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                </div>
                 <div class="port-info">
-                    <div class="port-name">Café Amarillo</div>
-                    <div class="port-type" data-i18n="portfolio.p3.type">Cafetería &middot; Rosario</div>
+                    <div class="port-name">Jotunstogo</div>
+                    <div class="port-type" data-i18n="portfolio.p2.type">Restaurante de montaña &middot; Noruega</div>
                 </div>
-            </div>
+            </a>
+            <a class="port-card rv d2" href="https://landing-automator.vercel.app/negocios/bocadillos-express/" target="_blank" rel="noopener">
+                <div class="port-thumb">
+                    <img src="portfolio/bocadillos-express.jpg" alt="Página de inicio de Bocadillos Express" width="1200" height="840" loading="lazy" decoding="async">
+                    <span class="port-visit"><span data-i18n="portfolio.visit">Ver sitio</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+                </div>
+                <div class="port-info">
+                    <div class="port-name">Bocadillos Express</div>
+                    <div class="port-type" data-i18n="portfolio.p3.type">Comida árabe &middot; Barcelona</div>
+                </div>
+            </a>
         </div>
     </div>
 </section>
@@ -1218,10 +1249,10 @@
 
         'portfolio.title': { es:'Proyectos recientes', en:'Recent projects' },
         'portfolio.sub': { es:'Cada negocio tiene su propia historia. Aquí algunas de las webs que construimos.', en:'Every business has its own story. Here are some of the websites we\'ve built.' },
-        'portfolio.soon': { es:'Próximamente', en:'Coming soon' },
-        'portfolio.p1.type': { es:'Restaurante &middot; Buenos Aires', en:'Restaurant &middot; Buenos Aires' },
-        'portfolio.p2.type': { es:'Salón de estética &middot; Córdoba', en:'Beauty salon &middot; Córdoba' },
-        'portfolio.p3.type': { es:'Cafetería &middot; Rosario', en:'Café &middot; Rosario' },
+        'portfolio.visit': { es:'Ver sitio', en:'Visit site' },
+        'portfolio.p1.type': { es:'Restaurante asiático &middot; Barcelona', en:'Asian restaurant &middot; Barcelona' },
+        'portfolio.p2.type': { es:'Restaurante de montaña &middot; Noruega', en:'Mountain restaurant &middot; Norway' },
+        'portfolio.p3.type': { es:'Comida árabe &middot; Barcelona', en:'Arabic food &middot; Barcelona' },
 
         'faq.title': { es:'Resolvemos tus dudas', en:'We answer your questions' },
         'faq.sub': { es:'Si tenés otra pregunta, escribinos por WhatsApp y te respondemos al toque.', en:'If you have another question, message us on WhatsApp and we\'ll reply right away.' },
